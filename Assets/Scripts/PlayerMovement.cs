@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     // we will use it to apply forces like jumping
     public Rigidbody playerRb; // reference to the player's Rigidbody component
     private bool isOnGround = true; // to check if the player is on the ground
+    public Transform cameraTransform; // reference to the camera's transform to calculate movement direction
 
     // Start is called before the first frame update
     void Start()
@@ -30,13 +31,19 @@ public class PlayerMovement : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal");
         forwardInput = Input.GetAxis("Vertical");
 
-        // Move the player forward
-        // Vector3.forward is moving the player in the Z direction
-        // Vector3.right is moving the player in the X direction
-        // Time.deltaTime is used to make the movement frame rate independent
-        // speed is multiplied by the input to control the speed of movement
-        transform.Translate(Vector3.forward * Time.deltaTime * speed * forwardInput);
-        transform.Translate(Vector3.right * Time.deltaTime * speed * horizontalInput);
+        // calculate the movement direction based on camera orientation
+        // we will use the camera's forward and right vectors to determine the movement direction
+        // we will ignore the Y component to keep the movement on the horizontal plane
+        Vector3 camForward = cameraTransform.forward; // Get the camera's forward direction
+        Vector3 camRight = cameraTransform.right; // Get the camera's right direction
+        camForward.y = 0f; // Reset the Y axis to keep movement on the horizontal plane
+        camRight.y = 0f; // Reset the Y axis to keep movement on the horizontal plane
+        // Normalize the vectors to ensure consistent movement speed
+        camForward.Normalize();
+        camRight.Normalize();
+        // calculate the movement direction based on input and camera orientation
+        Vector3 moveDir = camForward * forwardInput + camRight * horizontalInput;
+        transform.Translate(moveDir * Time.deltaTime * speed, Space.World);
 
         // let the player jump
         // check if the player is pressing the jump button (spacebar by default)
