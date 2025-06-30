@@ -1,12 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
 
     [SerializeField] private GameObject target; // oyuncu
+    private NavMeshAgent agent; // NavMeshAgent bileşeni
     float speed = 2f; // düşmanın hareket hızı
+
+    void Awake()
+    {
+        agent = GetComponent<NavMeshAgent>();
+        agent.speed = speed; // düşmanın hızını ayarla
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,10 +25,6 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // oyuncunun pozisyonu
-        Vector3 targetPos = new Vector3(target.transform.position.x, transform.position.y, target.transform.position.z);
-        transform.LookAt(targetPos); // oyuncuya bak
-        // oyuncuya doğru hareket et
-        transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
+        agent.SetDestination(target.transform.position); // düşmanı oyuncuya doğru hareket ettir
     }
 }
