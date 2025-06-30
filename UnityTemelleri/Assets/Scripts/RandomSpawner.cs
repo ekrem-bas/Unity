@@ -1,0 +1,59 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class RandomSpawner : MonoBehaviour
+{
+    [SerializeField] private GameObject player; // oyuncu
+    [SerializeField] private GameObject plane; // plane
+    Vector3 planeSize; // plane'in boyutu
+    [SerializeField] private GameObject enemyPrefab; // düşman prefab
+    // oyunucya olan minimum spawn mesafesi
+    private float minSpawnDistance = 5f;
+
+    // maksimum düşman sayısı
+    private int maxEnemyCount = 10;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        // plane'in boyutunu al
+        planeSize = plane.GetComponent<MeshRenderer>().bounds.size;
+        InvokeRepeating("SpawnEnemy", 0f, 5f); // her 5 saniyede bir SpawnEnemy fonksiyonunu çağır
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    void SpawnEnemy()
+    {
+        if (maxEnemyCount > 0)
+        { // Random olarak spawn edilecek pozisyonu belirle
+            Vector3 spawnPosition;
+            do
+            {
+                float x = Random.Range(-planeSize.x / 2, planeSize.x / 2);
+                float z = Random.Range(-planeSize.z / 2, planeSize.z / 2);
+                spawnPosition = new Vector3(
+                    plane.transform.position.x + x,
+                    1,
+                    plane.transform.position.z + z
+                );
+            } while (
+                Vector3.Distance(spawnPosition, player.transform.position) < minSpawnDistance
+                || Physics.OverlapSphere(spawnPosition, 2f, LayerMask.GetMask("Enemy")).Length > 0
+                );
+
+            // Quaternion.identity = nesnein rotasyonu olmadan varsayılan olarak oluşturulması
+            Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+            maxEnemyCount--;
+        }
+        else
+        {
+            CancelInvoke("SpawnEnemy"); // düşman sayısı maksimuma ulaştığında SpawnEnemy fonksiyonunu durdur
+        }
+    }
+}
