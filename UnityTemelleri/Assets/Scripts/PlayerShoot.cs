@@ -37,5 +37,7 @@ public class PlayerShoot : MonoBehaviour
         bulletRb.isKinematic = false;
         bulletRb.AddForce(direction * bulletSpeed, ForceMode.Impulse); // Mermiyi hedefe doğru it
 
+        // Mermiyi 7 saniye sonra otomatik olarak yok et (değmezse)
+        Destroy(bullet, 7f);
     }
 }

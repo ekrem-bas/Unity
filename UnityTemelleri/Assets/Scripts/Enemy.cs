@@ -7,7 +7,6 @@ public class Enemy : MonoBehaviour
 {
     // Tüm düşmanları tutan static liste
     public static List<GameObject> allEnemies = new List<GameObject>();
-
     [SerializeField] private GameObject target; // oyuncu
     private NavMeshAgent agent; // NavMeshAgent bileşeni
     float speed = 2f; // düşmanın hareket hızı
