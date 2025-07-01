@@ -30,8 +30,12 @@ public class Bullet : MonoBehaviour
         // Hedefe doğru yön hesapla
         Vector3 direction = (target.transform.position - bulletSpawnPoint.transform.position).normalized;
 
-        // Mermi prefabını oluştur
-        GameObject bullet = Object.Instantiate(bulletPrefab, bulletSpawnPoint.transform.position, Quaternion.identity);
+        // Bullet'ın hedefe doğru bakması için rotation hesapla
+        // Eğer bullet'ın ucu Z ekseni ise (normal):
+        Quaternion bulletRotation = Quaternion.LookRotation(direction);
+
+        // Mermi prefabını hedefe doğru bakan rotation ile oluştur
+        GameObject bullet = Object.Instantiate(bulletPrefab, bulletSpawnPoint.transform.position, bulletRotation);
 
         bullet.GetComponent<Bullet>().damage = damage; // Merminin hasarını ayarla
 

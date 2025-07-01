@@ -138,8 +138,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21a45c4f6de7d4e6faaca26aa0360923, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 6873620846444607544, guid: 31a0eb2a9ae5546779da7217c84468d0, type: 3}
+  bulletPrefab: {fileID: 5681859552569195281, guid: e4a12ed7a7e4447e18729e3fde52e368, type: 3}
   spawnPoint: {fileID: 7819047591192774550}
+  towerBulletDamage: 35
 --- !u!114 &5533652441905207953
 MonoBehaviour:
   m_ObjectHideFlags: 0
