@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
+    // Tüm düşmanları tutan static liste
+    public static List<GameObject> allEnemies = new List<GameObject>();
 
     [SerializeField] private GameObject target; // oyuncu
     private NavMeshAgent agent; // NavMeshAgent bileşeni
@@ -23,6 +25,8 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Bu düşmanı listeye ekle
+        allEnemies.Add(gameObject);
         target = GameObject.FindGameObjectWithTag("Player");
         healthbar.UpdateHealthbar(maxHealth, health);
     }
@@ -31,11 +35,19 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         agent.SetDestination(target.transform.position); // düşmanı oyuncuya doğru hareket ettir
-        health -= 15 * Time.deltaTime; // düşmanın canını azalt
+        health -= 5 * Time.deltaTime; // düşmanın canını azalt
         healthbar.UpdateHealthbar(maxHealth, health); // sağlık çubuğunu güncelle
         if (health <= 0)
         {
+            // Düşman öldüğünde listeden çıkar
+            allEnemies.Remove(gameObject);
             Destroy(gameObject); // düşman öldüğünde yok et
         }
+    }
+
+    // Nesne yok edilirken çağrılır
+    void OnDestroy()
+    {
+        allEnemies.Remove(gameObject);
     }
 }

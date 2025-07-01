@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // Get the Rigidbody component attached to the player GameObject
         playerRb = GetComponent<Rigidbody>();
+        cameraTransform = Camera.main.transform; // Get the main camera's transform
     }
 
     // Update is called once per frame
