@@ -9,6 +9,7 @@ namespace Scripts.Tower
     {
         [SerializeField] private GameObject bulletPrefab; // Mermi prefab
         [SerializeField] private Transform spawnPoint; // Merminin spawn edileceği nokta
+        [SerializeField] private float towerBulletDamage = 35f; // Tower mermi hasarı
         private GameObject shootTarget; // Merminin hedefi
         private float shootTimer = 4f; // Atış zamanlayıcısı
         private float bulletSpeed = 20f; // Merminin hızı
@@ -35,7 +36,7 @@ namespace Scripts.Tower
                 return;
             }
 
-            Bullet.Shoot(shootTarget, spawnPoint, bulletPrefab, bulletSpeed); // Mermiyi hedefe doğru at
+            Bullet.Shoot(shootTarget, spawnPoint, bulletPrefab, towerBulletDamage, bulletSpeed); // Tower damage ile mermi at
         }
     }
 }

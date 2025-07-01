@@ -2,10 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using Scripts.Enemy;
 
-public class Bullet
+public class Bullet : MonoBehaviour
 {
-    public static void Shoot(GameObject target, Transform bulletSpawnPoint, GameObject bulletPrefab, float speed = 20f, float lifetime = 7f)
+    [SerializeField] private float damage = 50f; // Mermi hasarı
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            // Enemy scriptini al ve hasar ver
+            Enemy enemy = other.gameObject.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(damage); // Bullet'ın kendi damage değerini kullan
+            }
+
+            Destroy(gameObject); // Mermiyi yok et
+        }
+    }
+
+    public static void Shoot(GameObject target, Transform bulletSpawnPoint, GameObject bulletPrefab, float damage = 50f, float speed = 20f, float lifetime = 7f)
     {
         if (target == null || bulletPrefab == null || bulletSpawnPoint == null) return;
 
@@ -14,6 +32,8 @@ public class Bullet
 
         // Mermi prefabını oluştur
         GameObject bullet = Object.Instantiate(bulletPrefab, bulletSpawnPoint.transform.position, Quaternion.identity);
+
+        bullet.GetComponent<Bullet>().damage = damage; // Merminin hasarını ayarla
 
         // Merminin Rigidbody bileşenini al
         Rigidbody rb = bullet.GetComponent<Rigidbody>();

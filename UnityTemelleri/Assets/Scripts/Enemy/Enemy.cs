@@ -39,20 +39,14 @@ namespace Scripts.Enemy
         }
 
 
-        private void OnTriggerEnter(Collider other)
+        public void TakeDamage(float damage)
         {
-            // Bu yöntem optimize bir yöntem midir?
-            if (other.gameObject.CompareTag("Bullet")) // Eğer mermiye çarparsa
+            health -= damage;
+            healthbar.UpdateHealthbar(maxHealth, health); // sağlık çubuğunu güncelle
+
+            if (health <= 0) // Eğer canı sıfır veya altına düşerse
             {
-                health -= 50f; // canını azalt
-                healthbar.UpdateHealthbar(maxHealth, health); // sağlık çubuğunu güncelle
-
-                Destroy(other.gameObject); // mermiyi yok et
-
-                if (health <= 0) // Eğer canı sıfır veya altına düşerse
-                {
-                    Destroy(gameObject); // düşmanı yok et
-                }
+                Destroy(gameObject); // düşmanı yok et
             }
         }
 
