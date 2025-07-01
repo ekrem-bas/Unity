@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerShoot : MonoBehaviour
+public class TowerShoot : MonoBehaviour
 {
     [SerializeField] private GameObject bulletPrefab; // Mermi prefab
     [SerializeField] private Transform spawnPoint; // Merminin spawn edileceği nokta
@@ -12,7 +12,7 @@ public class PlayerShoot : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("Shoot", 0f, shootTimer); // Her 5 saniyede bir Shoot fonksiyonunu çağır
+        InvokeRepeating("Shoot", 0f, shootTimer);
     }
 
     // Update is called once per frame
@@ -23,9 +23,9 @@ public class PlayerShoot : MonoBehaviour
 
     void Shoot()
     {
-        shootTarget = GetComponent<DetectClosestEnemy>().GetClosestEnemy(); // En yakın düşmanı al
-        if (shootTarget == null) return; // Eğer en yakın düşman yoksa atış yapma
-
+        DetectClosestEnemy detector = GetComponent<DetectClosestEnemy>();
+        shootTarget = detector.GetClosestEnemy(); // En yakın düşmanı al
+        if (shootTarget == null) return;
         // Hedefe doğru yön hesapla
         Vector3 direction = (shootTarget.transform.position - spawnPoint.position).normalized;
 

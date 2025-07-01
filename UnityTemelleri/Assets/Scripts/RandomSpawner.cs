@@ -9,17 +9,17 @@ public class RandomSpawner : MonoBehaviour
     Vector3 planeSize; // plane'in boyutu
     [SerializeField] private GameObject enemyPrefab; // düşman prefab
     // oyunucya olan minimum spawn mesafesi
-    private float minSpawnDistance = 5f;
+    private float minSpawnDistance = 2f;
 
     // maksimum düşman sayısı
-    private int maxEnemyCount = 10;
+    private int maxEnemyCount = 30;
 
     // Start is called before the first frame update
     void Start()
     {
         // plane'in boyutunu al
         planeSize = plane.GetComponent<MeshRenderer>().bounds.size;
-        InvokeRepeating("SpawnEnemy", 0f, 5f); // her 5 saniyede bir SpawnEnemy fonksiyonunu çağır
+        InvokeRepeating("SpawnEnemy", 0f, 2f); // her 5 saniyede bir SpawnEnemy fonksiyonunu çağır
     }
 
     // Update is called once per frame

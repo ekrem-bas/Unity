@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private Healthbar healthbar; // sağlık çubuğu scripti
     float maxHealth = 100f; // düşmanın maksimum canı
-    float health = 100f; // düşmanın canı
+    float health = 100f; // düşmanın şu anki canı
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
