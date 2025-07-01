@@ -6,16 +6,19 @@ public class PlayerMovement : MonoBehaviour
 {
     // Oyuncuyu hareket ettirirken kullanilacak olan NavMeshAgent
     [SerializeField] private NavMeshAgent agent;
+    private Camera cam;
+    private float speed = 5f; // Oyuncunun hareket hızı
 
     void Awake()
     {
         // NavMeshAgent bileşenini al
         agent = GetComponent<NavMeshAgent>();
     }
-    // Start is called before the first frame update
+
     void Start()
     {
-
+        cam = Camera.main; // Ana kamerayı al
+        agent.speed = speed; // NavMeshAgent'in hızını ayarla
     }
 
     // Update is called once per frame
@@ -24,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             // Fare sol tusuna basildiginda fare konumunu al
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             // RaycastHit yapisi ile raycast sonucunu tut
             RaycastHit hit;
             // Raycast ile fare konumundaki objeyi kontrol et

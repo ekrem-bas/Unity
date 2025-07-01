@@ -7,20 +7,21 @@ public class Healthbar : MonoBehaviour
 {
     [SerializeField] private Image healthbarImage; // Sağlık çubuğu görseli
 
-    private Camera cam;
+    private Camera cam; // Ana kamera referansı
 
     void Start()
     {
         cam = Camera.main;
     }
-    // Start is called before the first frame update
     public void UpdateHealthbar(float maxHealth, float currentHealth)
     {
+        // Sağlık çubuğunu güncelle
         healthbarImage.fillAmount = currentHealth / maxHealth;
     }
 
     void Update()
     {
+        // Kameraya bakacak şekilde sağlık çubuğunu döndür
         transform.rotation = Quaternion.LookRotation(transform.position - cam.transform.position);
     }
 }

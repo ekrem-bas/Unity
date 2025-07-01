@@ -5,22 +5,16 @@ using UnityEngine;
 public class DetectClosestEnemy : MonoBehaviour
 {
     [SerializeField] private GameObject closestEnemy; // En yakın düşman
-    [SerializeField] private GameObject player;
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
+    [SerializeField] private GameObject owner;
 
     // Update is called once per frame
     void Update()
     {
         closestEnemy = ClosestEnemy(); // En yakın düşmanı bul
-
         // Eğer en yakın düşman varsa ona bak
         if (closestEnemy != null)
         {
-            player.transform.LookAt(closestEnemy.transform); // Oyuncu en yakın düşmana bakar
+            owner.transform.LookAt(closestEnemy.transform); // Oyuncu en yakın düşmana bakar
         }
     }
 

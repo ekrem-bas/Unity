@@ -6,9 +6,9 @@ public class TowerShoot : MonoBehaviour
 {
     [SerializeField] private GameObject bulletPrefab; // Mermi prefab
     [SerializeField] private Transform spawnPoint; // Merminin spawn edileceği nokta
-    [SerializeField] private float bulletSpeed = 20f; // Merminin hızı
     private GameObject shootTarget; // Merminin hedefi
     private float shootTimer = 4f; // Atış zamanlayıcısı
+    private float bulletSpeed = 20f; // Merminin hızı
     // Start is called before the first frame update
     void Start()
     {
@@ -25,19 +25,13 @@ public class TowerShoot : MonoBehaviour
     {
         DetectClosestEnemy detector = GetComponent<DetectClosestEnemy>();
         shootTarget = detector.GetClosestEnemy(); // En yakın düşmanı al
-        if (shootTarget == null) return;
-        // Hedefe doğru yön hesapla
-        Vector3 direction = (shootTarget.transform.position - spawnPoint.position).normalized;
 
-        // Mermi prefabını spawnPoint'ten oluştur
-        GameObject bullet = Instantiate(bulletPrefab, spawnPoint.position, Quaternion.identity);
+        // Eğer hedef yoksa atış yapma
+        if (shootTarget == null)
+        {
+            return;
+        }
 
-        // Merminin Rigidbody bileşenini al
-        Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
-        bulletRb.isKinematic = false;
-        bulletRb.AddForce(direction * bulletSpeed, ForceMode.Impulse); // Mermiyi hedefe doğru it
-
-        // Mermiyi 7 saniye sonra otomatik olarak yok et (değmezse)
-        Destroy(bullet, 7f);
+        Bullet.Shoot(shootTarget, spawnPoint, bulletPrefab, bulletSpeed); // Mermiyi hedefe doğru at
     }
 }
