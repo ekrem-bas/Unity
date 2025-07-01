@@ -24,7 +24,7 @@ public class DetectClosestEnemy : MonoBehaviour
         }
     }
 
-    GameObject ClosestEnemy()
+    private GameObject ClosestEnemy()
     {
         // Eğer hiç düşman yoksa null döndür
         if (Enemy.allEnemies.Count == 0)
@@ -43,5 +43,10 @@ public class DetectClosestEnemy : MonoBehaviour
             }
         }
         return closest;
+    }
+
+    public GameObject GetClosestEnemy()
+    {
+        return closestEnemy; // En yakın düşmanı döndür
     }
 }

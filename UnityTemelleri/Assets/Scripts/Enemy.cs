@@ -35,13 +35,23 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         agent.SetDestination(target.transform.position); // düşmanı oyuncuya doğru hareket ettir
-        health -= 5 * Time.deltaTime; // düşmanın canını azalt
-        healthbar.UpdateHealthbar(maxHealth, health); // sağlık çubuğunu güncelle
-        if (health <= 0)
+    }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        // Bu yöntem optimize bir yöntem midir?
+        if (other.gameObject.CompareTag("Bullet")) // Eğer mermiye çarparsa
         {
-            // Düşman öldüğünde listeden çıkar
-            allEnemies.Remove(gameObject);
-            Destroy(gameObject); // düşman öldüğünde yok et
+            health -= 50f; // canını azalt
+            healthbar.UpdateHealthbar(maxHealth, health); // sağlık çubuğunu güncelle
+
+            Destroy(other.gameObject); // mermiyi yok et
+
+            if (health <= 0) // Eğer canı sıfır veya altına düşerse
+            {
+                Destroy(gameObject); // düşmanı yok et
+            }
         }
     }
 
