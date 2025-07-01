@@ -543,7 +543,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1636052776}
   plane: {fileID: 685585267}
+  planeSize: {x: 0, y: 0, z: 0}
   enemyPrefab: {fileID: 5559991119688088909, guid: dcb33356861e34bb88e83b979d6c8bfe, type: 3}
+  minSpawnDistance: 2
+  maxEnemyCount: 30
 --- !u!4 &850764762
 Transform:
   m_ObjectHideFlags: 0
@@ -665,10 +668,10 @@ GameObject:
   - component: {fileID: 1636052778}
   - component: {fileID: 1636052777}
   - component: {fileID: 1636052782}
-  - component: {fileID: 1636052783}
-  - component: {fileID: 1636052784}
-  - component: {fileID: 1636052785}
   - component: {fileID: 1636052786}
+  - component: {fileID: 1636052785}
+  - component: {fileID: 1636052784}
+  - component: {fileID: 1636052783}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -824,10 +827,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1636052776}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c04bd3a3451ba450cbf9f90704178141, type: 3}
+  m_Script: {fileID: 11500000, guid: f3a77c950d37c493988b1033f5cb5f0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 1636052782}
+  towerPrefab: {fileID: 84307217415146895, guid: 074825a28491a43709639f1e652fd709, type: 3}
 --- !u!114 &1636052784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -837,11 +840,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1636052776}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a41b986a1a9844c57aa42b3b32ca1f54, type: 3}
+  m_Script: {fileID: 11500000, guid: 5728b056e9440453dba66f25c43cd357, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   closestEnemy: {fileID: 0}
-  player: {fileID: 1636052776}
+  owner: {fileID: 1636052776}
 --- !u!114 &1636052785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -851,12 +854,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1636052776}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bccbc5fbe67545d0a748ea7e5372ea6, type: 3}
+  m_Script: {fileID: 11500000, guid: c60984aee1bf7424c8ace453fec769e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 6873620846444607544, guid: 31a0eb2a9ae5546779da7217c84468d0, type: 3}
   spawnPoint: {fileID: 1749804151}
-  bulletSpeed: 20
+  bulletSpeed: 40
 --- !u!114 &1636052786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -866,10 +869,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1636052776}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebdd4fdf2c5f846c5b83d0ea048b33da, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f36b19a997d44e88825375acfc3074b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerPrefab: {fileID: 84307217415146895, guid: 074825a28491a43709639f1e652fd709, type: 3}
+  agent: {fileID: 1636052782}
 --- !u!1 &1749804150
 GameObject:
   m_ObjectHideFlags: 0

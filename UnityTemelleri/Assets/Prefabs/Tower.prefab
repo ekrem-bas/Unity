@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 3481342214135207711}
   - component: {fileID: 7270420416633086709}
   - component: {fileID: 935078885344321253}
-  - component: {fileID: 4839697142088094901}
-  - component: {fileID: 2100003550114303679}
+  - component: {fileID: 9056595007797290739}
+  - component: {fileID: 5533652441905207953}
   m_Layer: 0
   m_Name: Tower
   m_TagString: Tower
@@ -108,7 +108,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 2, z: 2}
+  m_Size: {x: 4, y: 2, z: 4}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!208 &935078885344321253
 NavMeshObstacle:
@@ -126,7 +126,7 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
---- !u!114 &4839697142088094901
+--- !u!114 &9056595007797290739
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -135,13 +135,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 84307217415146895}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dea2d50e1d50d410e981617367f50b50, type: 3}
+  m_Script: {fileID: 11500000, guid: 21a45c4f6de7d4e6faaca26aa0360923, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 6873620846444607544, guid: 31a0eb2a9ae5546779da7217c84468d0, type: 3}
   spawnPoint: {fileID: 7819047591192774550}
-  bulletSpeed: 20
---- !u!114 &2100003550114303679
+--- !u!114 &5533652441905207953
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -150,11 +149,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 84307217415146895}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a41b986a1a9844c57aa42b3b32ca1f54, type: 3}
+  m_Script: {fileID: 11500000, guid: 5728b056e9440453dba66f25c43cd357, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   closestEnemy: {fileID: 0}
-  player: {fileID: 6828297833498353715}
+  owner: {fileID: 6828297833498353715}
 --- !u!1 &532727185488014331
 GameObject:
   m_ObjectHideFlags: 0
