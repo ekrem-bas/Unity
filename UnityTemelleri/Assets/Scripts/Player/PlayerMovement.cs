@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
 
 namespace Scripts.Player
 {
@@ -27,7 +28,8 @@ namespace Scripts.Player
         // Update is called once per frame
         void Update()
         {
-            if (Input.GetMouseButtonDown(0))
+            // Fare sol tusuna basildiginda ve UI elemanlari uzerinde degilse
+            if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
             {
                 // Fare sol tusuna basildiginda fare konumunu al
                 Ray ray = cam.ScreenPointToRay(Input.mousePosition);
