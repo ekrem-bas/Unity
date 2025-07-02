@@ -13,14 +13,14 @@ namespace Scripts.Enemy
                                                          // oyunucya olan minimum spawn mesafesi
         private float minSpawnDistance = 2f;
         // maksimum düşman sayısı
-        private int maxEnemyCount = 30;
+        private int maxEnemyCount = 100;
 
         // Start is called before the first frame update
         void Start()
         {
             // plane'in boyutunu al
             planeSize = plane.GetComponent<MeshRenderer>().bounds.size;
-            InvokeRepeating("SpawnEnemy", 0f, 2f); // her 5 saniyede bir SpawnEnemy fonksiyonunu çağır
+            InvokeRepeating("SpawnEnemy", 0f, 1f); // her saniyede bir SpawnEnemy fonksiyonunu çağır
         }
 
         void SpawnEnemy()

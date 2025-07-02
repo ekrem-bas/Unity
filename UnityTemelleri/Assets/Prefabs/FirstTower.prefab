@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 9056595007797290739}
   - component: {fileID: 5533652441905207953}
   m_Layer: 7
-  m_Name: Tower
+  m_Name: FirstTower
   m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 5681859552569195281, guid: e4a12ed7a7e4447e18729e3fde52e368, type: 3}
   spawnPoint: {fileID: 7819047591192774550}
-  towerBulletDamage: 35
+  towerData: {fileID: 11400000, guid: 6198de85bcd46479fb71497bbcf61e7e, type: 2}
 --- !u!114 &5533652441905207953
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11,7 +11,7 @@ namespace Scripts.Player
         [SerializeField] private float bulletSpeed = 40f; // Merminin hızı
         [SerializeField] private float playerBulletDamage = 25f; // Player mermi hasarı
         private GameObject shootTarget; // Merminin hedefi
-        private float shootTimer = 0.8f; // Atış zamanlayıcısı
+        private float shootTimer = 1.5f; // Atış zamanlayıcısı
                                          // Start is called before the first frame update
         void Start()
         {

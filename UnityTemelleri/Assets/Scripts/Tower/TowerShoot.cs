@@ -9,14 +9,11 @@ namespace Scripts.Tower
     {
         [SerializeField] private GameObject bulletPrefab; // Mermi prefab
         [SerializeField] private Transform spawnPoint; // Merminin spawn edileceği nokta
-        [SerializeField] private float towerBulletDamage = 50f; // Tower mermi hasarı
         private GameObject shootTarget; // Merminin hedefi
-        private float shootTimer = 3f; // Atış zamanlayıcısı
-        private float bulletSpeed = 20f; // Merminin hızı
-                                         // Start is called before the first frame update
+        [SerializeField] private TowerData towerData; // Kule verileri
         void Start()
         {
-            InvokeRepeating("Shoot", 0f, shootTimer);
+            InvokeRepeating("Shoot", 0f, towerData.shootTimer);
         }
 
         // Update is called once per frame
@@ -36,7 +33,7 @@ namespace Scripts.Tower
                 return;
             }
 
-            Bullet.Shoot(shootTarget, spawnPoint, bulletPrefab, towerBulletDamage, bulletSpeed); // Tower damage ile mermi at
+            Bullet.Shoot(shootTarget, spawnPoint, bulletPrefab, towerData.damage, towerData.bulletSpeed); // Tower damage ile mermi at
         }
     }
 }

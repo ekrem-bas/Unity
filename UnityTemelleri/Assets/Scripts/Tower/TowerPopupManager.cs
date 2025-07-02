@@ -13,7 +13,7 @@ public class TowerPopupManager : MonoBehaviour
         popupPanel.SetActive(true); // Popup panelini aktif et
         spawnPosition = position; // Popup'ın açılacağı pozisyonu ayarla
 
-        
+
         // Paneli fare pozisyonuna taşı
         Vector2 mousePos = Input.mousePosition;
         popupPanel.GetComponent<Transform>().position = mousePos;
@@ -26,9 +26,9 @@ public class TowerPopupManager : MonoBehaviour
     }
 
     // Butonlara tıklandığında çağrılacak fonksiyonlar
-    public void OnTowerButton()
+    public void OnTowerButton(int towerIndex)
     {
-        tower.PlaceTower(spawnPosition);
+        tower.PlaceTower(spawnPosition, towerIndex);
         Hide();
     }
 

@@ -8,11 +8,12 @@ namespace Scripts.Tower
     public class Tower : MonoBehaviour
     {
         private Camera cam;
-        [SerializeField] private GameObject towerPrefab; // Yerleştirilecek kule prefab'ı
+        [SerializeField] private GameObject[] towerPrefabs; // Yerleştirilecek kule prefab'ı
+        [SerializeField] private TowerData[] towerDatas; // Kule verileri
         [SerializeField] private TowerPopupManager towerPopupManager; // Kule popup yöneticisi
-        [SerializeField] private int towerPrice = 100;
         [SerializeField] CoinManager coinManager;
         [SerializeField] private LayerMask groundLayer; // Yere yerleştirme için kullanılacak layer
+        
         void Start()
         {
             cam = Camera.main; // Ana kamerayı al
@@ -38,8 +39,11 @@ namespace Scripts.Tower
             }
         }
 
-        public void PlaceTower(Vector3 position)
+        public void PlaceTower(Vector3 position, int towerIndex)
         {
+            GameObject prefab = towerPrefabs[towerIndex];
+            TowerData towerData = towerDatas[towerIndex];
+
             Vector3 boxSize = new Vector3(4f, 2f, 4f) * 0.5f; // BoxCollider'ın yarısı kadar (center to edge)
             Collider[] colliders = Physics.OverlapBox(position, boxSize, Quaternion.identity, LayerMask.GetMask("Tower"));
 
@@ -49,11 +53,11 @@ namespace Scripts.Tower
                 return;
             }
 
-            if (coinManager.coinCount >= towerPrice)
+            if (coinManager.coinCount >= towerData.price)
             {
                 // Kule prefab'ını belirtilen pozisyonda oluştur
-                Instantiate(towerPrefab, position, Quaternion.identity);
-                coinManager.coinCount -= towerPrice; // Coin sayısını güncelle
+                Instantiate(prefab, position, Quaternion.identity);
+                coinManager.coinCount -= towerData.price; // Coin sayısını güncelle
             }
             else
             {
