@@ -16,6 +16,9 @@ namespace Scripts.Enemy
         [SerializeField] private Healthbar healthbar; // sağlık çubuğu scripti
         float maxHealth = 100f; // düşmanın maksimum canı
         float health = 100f; // düşmanın şu anki canı
+
+        // coin manager
+        private CoinManager coinManager;
         void Awake()
         {
             agent = GetComponent<NavMeshAgent>();
@@ -47,6 +50,9 @@ namespace Scripts.Enemy
             if (health <= 0) // Eğer canı sıfır veya altına düşerse
             {
                 Destroy(gameObject); // düşmanı yok et
+
+                coinManager = FindObjectOfType<CoinManager>();
+                coinManager.coinCount += 50; // 10 coin ekle
             }
         }
 

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using Scripts.Enemy;
-
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private float damage = 50f; // Mermi hasarı

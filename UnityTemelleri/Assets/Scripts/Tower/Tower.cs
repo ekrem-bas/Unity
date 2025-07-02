@@ -9,7 +9,6 @@ namespace Scripts.Tower
     {
         private Camera cam;
         [SerializeField] private GameObject towerPrefab; // Yerleştirilecek kule prefab'ı (Inspector'dan atanacak)
-                                                         // Start is called before the first frame update
         void Start()
         {
             cam = Camera.main; // Ana kamerayı al
