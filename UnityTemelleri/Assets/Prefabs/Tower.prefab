@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 935078885344321253}
   - component: {fileID: 9056595007797290739}
   - component: {fileID: 5533652441905207953}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tower
   m_TagString: Tower
   m_Icon: {fileID: 0}
@@ -164,7 +164,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7819047591192774550}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BulletSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -198,7 +198,7 @@ GameObject:
   - component: {fileID: 1541777169318800865}
   - component: {fileID: 1968577025667082603}
   - component: {fileID: 5317358712509334446}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GunBarrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -306,7 +306,7 @@ GameObject:
   - component: {fileID: 9092465309825144825}
   - component: {fileID: 2362647489710371980}
   - component: {fileID: 5217481069613248200}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TowerGunPlace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -411,7 +411,7 @@ GameObject:
   - component: {fileID: 2966541186524566739}
   - component: {fileID: 8606210287876961005}
   - component: {fileID: 5531626348964673500}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GunCenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}

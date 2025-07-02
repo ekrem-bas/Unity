@@ -9,9 +9,9 @@ namespace Scripts.Tower
     {
         [SerializeField] private GameObject bulletPrefab; // Mermi prefab
         [SerializeField] private Transform spawnPoint; // Merminin spawn edileceği nokta
-        [SerializeField] private float towerBulletDamage = 35f; // Tower mermi hasarı
+        [SerializeField] private float towerBulletDamage = 50f; // Tower mermi hasarı
         private GameObject shootTarget; // Merminin hedefi
-        private float shootTimer = 4f; // Atış zamanlayıcısı
+        private float shootTimer = 3f; // Atış zamanlayıcısı
         private float bulletSpeed = 20f; // Merminin hızı
                                          // Start is called before the first frame update
         void Start()

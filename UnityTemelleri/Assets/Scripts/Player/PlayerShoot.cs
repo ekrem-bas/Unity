@@ -9,10 +9,10 @@ namespace Scripts.Player
         [SerializeField] private GameObject bulletPrefab; // Mermi prefab
         [SerializeField] private Transform spawnPoint; // Merminin spawn edileceği nokta
         [SerializeField] private float bulletSpeed = 40f; // Merminin hızı
-        [SerializeField] private float playerBulletDamage = 75f; // Player mermi hasarı
+        [SerializeField] private float playerBulletDamage = 25f; // Player mermi hasarı
         private GameObject shootTarget; // Merminin hedefi
-        private float shootTimer = 4f; // Atış zamanlayıcısı
-                                       // Start is called before the first frame update
+        private float shootTimer = 0.8f; // Atış zamanlayıcısı
+                                         // Start is called before the first frame update
         void Start()
         {
             InvokeRepeating("Shoot", 0f, shootTimer); // Her 5 saniyede bir Shoot fonksiyonunu çağır

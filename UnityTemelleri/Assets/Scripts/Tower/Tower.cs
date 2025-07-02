@@ -12,9 +12,11 @@ namespace Scripts.Tower
         [SerializeField] private TowerPopupManager towerPopupManager; // Kule popup yöneticisi
         [SerializeField] private int towerPrice = 100;
         [SerializeField] CoinManager coinManager;
+        [SerializeField] private LayerMask groundLayer; // Yere yerleştirme için kullanılacak layer
         void Start()
         {
             cam = Camera.main; // Ana kamerayı al
+            groundLayer = LayerMask.GetMask("Ground"); // Ground layer'ını al
         }
 
         // Update is called once per frame
@@ -24,7 +26,7 @@ namespace Scripts.Tower
             {
                 Ray ray = cam.ScreenPointToRay(Input.mousePosition); // Fare pozisyonundan bir ray oluştur
                 RaycastHit hit; // Raycast sonucu için bir değişken
-                if (Physics.Raycast(ray, out hit))
+                if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundLayer))
                 {
                     // Sadece Ground tag'ına sahip yerlere kule yerleştir
                     if (hit.collider.gameObject.CompareTag("Ground"))
@@ -38,6 +40,15 @@ namespace Scripts.Tower
 
         public void PlaceTower(Vector3 position)
         {
+            Vector3 boxSize = new Vector3(4f, 2f, 4f) * 0.5f; // BoxCollider'ın yarısı kadar (center to edge)
+            Collider[] colliders = Physics.OverlapBox(position, boxSize, Quaternion.identity, LayerMask.GetMask("Tower"));
+
+            if (colliders.Length > 0)
+            {
+                Debug.Log("Burada zaten bir kule var!");
+                return;
+            }
+
             if (coinManager.coinCount >= towerPrice)
             {
                 // Kule prefab'ını belirtilen pozisyonda oluştur
