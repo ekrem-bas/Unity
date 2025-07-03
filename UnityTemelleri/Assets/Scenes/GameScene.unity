@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: 2dbe0b14beab64e2ebc2cc2c623abf9f, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 7c10f0435471443d8969539e325b9d14, type: 2}
 --- !u!1 &46624852
 GameObject:
   m_ObjectHideFlags: 0
@@ -340,6 +340,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 140829235}
   m_CullTransparentMesh: 1
+--- !u!1 &227649352
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 227649354}
+  - component: {fileID: 227649353}
+  m_Layer: 0
+  m_Name: CoinManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &227649353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 227649352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d8bc1a0e955c479d99e6360778da2c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinCount: 0
+  coinText: {fileID: 1483260010}
+--- !u!4 &227649354
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 227649352}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.870954, y: -2.5747223, z: -7.4458547}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &256667732
 GameObject:
   m_ObjectHideFlags: 0
@@ -538,7 +584,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popupPanel: {fileID: 266273459}
-  tower: {fileID: 1636052783}
+  towerPopUpManager: {fileID: 1869751261}
 --- !u!1 &318214866
 GameObject:
   m_ObjectHideFlags: 0
@@ -874,6 +920,56 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &486343781
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 486343782}
+  - component: {fileID: 486343783}
+  m_Layer: 0
+  m_Name: PlayerSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &486343782
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 486343781}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &486343783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 486343781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f9b5149607904f728e6e45affac438c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterPrefabs:
+  - {fileID: 2260429803009642686, guid: 2e53271250f2a4010b9aafffe2022701, type: 3}
+  - {fileID: 9075187007969656530, guid: d9ba52aaf0f99449db0b36ead288632e, type: 3}
+  - {fileID: 6530250335670728751, guid: 41ea072b148524677a4165afe870b08b, type: 3}
+  spawnPoint: {fileID: 486343782}
+  playerInstance: {fileID: 0}
 --- !u!1 &685585267
 GameObject:
   m_ObjectHideFlags: 0
@@ -1784,15 +1880,13 @@ GameObject:
   - component: {fileID: 1636052786}
   - component: {fileID: 1636052785}
   - component: {fileID: 1636052784}
-  - component: {fileID: 1636052783}
-  - component: {fileID: 1636052787}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!54 &1636052777
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1932,29 +2026,6 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &1636052783
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1636052776}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3a77c950d37c493988b1033f5cb5f0f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  towerPrefabs:
-  - {fileID: 84307217415146895, guid: 074825a28491a43709639f1e652fd709, type: 3}
-  - {fileID: 79039093038997301, guid: 420cd2cf789414571a970b1fd8ea3ef6, type: 3}
-  towerPopupManager: {fileID: 266273463}
-  coinManager: {fileID: 1636052787}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  towerDatas:
-  - {fileID: 11400000, guid: 6198de85bcd46479fb71497bbcf61e7e, type: 2}
-  - {fileID: 11400000, guid: cbb44957398ec4159b0a630190d16df2, type: 2}
 --- !u!114 &1636052784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1998,20 +2069,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 1636052782}
---- !u!114 &1636052787
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1636052776}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d8bc1a0e955c479d99e6360778da2c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coinCount: 0
-  coinText: {fileID: 1483260010}
+  playerData: {fileID: 11400000, guid: c4d55102c5e3047c2b54c5022114f445, type: 2}
 --- !u!1 &1747710375
 GameObject:
   m_ObjectHideFlags: 0
@@ -2147,6 +2205,61 @@ Transform:
   m_Children: []
   m_Father: {fileID: 256667733}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1869751260
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1869751262}
+  - component: {fileID: 1869751261}
+  m_Layer: 0
+  m_Name: TowerPopUpManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1869751261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1869751260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3a77c950d37c493988b1033f5cb5f0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerPrefabs:
+  - {fileID: 84307217415146895, guid: 074825a28491a43709639f1e652fd709, type: 3}
+  - {fileID: 79039093038997301, guid: 420cd2cf789414571a970b1fd8ea3ef6, type: 3}
+  towerDatas:
+  - {fileID: 11400000, guid: 6198de85bcd46479fb71497bbcf61e7e, type: 2}
+  - {fileID: 11400000, guid: cbb44957398ec4159b0a630190d16df2, type: 2}
+  towerPopupManager: {fileID: 266273463}
+  coinManager: {fileID: 227649353}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+--- !u!4 &1869751262
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1869751260}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.870954, y: -2.5747223, z: -7.4458547}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -2158,3 +2271,6 @@ SceneRoots:
   - {fileID: 850764762}
   - {fileID: 1747710379}
   - {fileID: 441382652}
+  - {fileID: 486343782}
+  - {fileID: 1869751262}
+  - {fileID: 227649354}

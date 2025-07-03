@@ -6,7 +6,16 @@ public class MainMenu : MonoBehaviour
 {
     public void PlayGame()
     {
-        SceneManager.LoadScene("GameScene");
+        if (PlayerPrefs.GetString("SelectedCharacterName") == "")
+        {
+            Debug.LogWarning("No character selected. Please choose a character first.");
+            return;
+        }
+        else
+        {
+            SceneManager.LoadScene("GameScene");
+        }
+
     }
 
     public void ChooseCharacter()

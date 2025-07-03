@@ -6,6 +6,7 @@
 [Bb]uilds/
 [Ll]ogs/
 
+
 # User-specific files
 UserSettings/
 
@@ -35,3 +36,5 @@ Thumbs.db
 # Auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+/Assets/CharacterModels

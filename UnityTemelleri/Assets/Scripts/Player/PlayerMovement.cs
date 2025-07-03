@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.EventSystems;
@@ -10,12 +11,12 @@ namespace Scripts.Player
     {
         // Oyuncuyu hareket ettirirken kullanilacak olan NavMeshAgent
         [SerializeField] private NavMeshAgent agent;
+        public PlayerData playerData;
         private Camera cam;
         private float speed = 5f; // Oyuncunun hareket hızı
 
         void Awake()
         {
-            // NavMeshAgent bileşenini al
             agent = GetComponent<NavMeshAgent>();
         }
 

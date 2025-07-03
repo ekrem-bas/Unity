@@ -6,7 +6,7 @@ public class TowerPopupManager : MonoBehaviour
 {
     public GameObject popupPanel; // Popup paneli
     private Vector3 spawnPosition; // Popup'ın açılacağı pozisyon
-    public Tower tower; // Tower script referansı
+    public Tower towerPopUpManager; // Tower script referansı
 
     public void Show(Vector3 position)
     {
@@ -28,7 +28,7 @@ public class TowerPopupManager : MonoBehaviour
     // Butonlara tıklandığında çağrılacak fonksiyonlar
     public void OnTowerButton(int towerIndex)
     {
-        tower.PlaceTower(spawnPosition, towerIndex);
+        towerPopUpManager.PlaceTower(spawnPosition, towerIndex);
         Hide();
     }
 
