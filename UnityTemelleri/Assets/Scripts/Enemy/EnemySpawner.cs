@@ -9,8 +9,8 @@ namespace Scripts.Enemy
         [SerializeField] private GameObject player; // oyuncu
         [SerializeField] private GameObject plane; // plane
         Vector3 planeSize; // plane'in boyutu
-        [SerializeField] private GameObject enemyPrefab; // düşman prefab
-                                                         // oyunucya olan minimum spawn mesafesi
+        [SerializeField] private GameObject[] enemyPrefabs; // düşman prefab
+                                                            // oyunucya olan minimum spawn mesafesi
         private float minSpawnDistance = 2f;
         // maksimum düşman sayısı
         private int maxEnemyCount = 100;
@@ -43,7 +43,7 @@ namespace Scripts.Enemy
                     );
 
                 // Quaternion.identity = nesnein rotasyonu olmadan varsayılan olarak oluşturulması
-                Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+                Instantiate(enemyPrefabs[0], spawnPosition, Quaternion.identity);
                 maxEnemyCount--;
             }
             else

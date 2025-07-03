@@ -14,8 +14,10 @@ namespace Scripts.Enemy
         float speed = 2f; // düşmanın hareket hızı
 
         [SerializeField] private Healthbar healthbar; // sağlık çubuğu scripti
-        float maxHealth = 100f; // düşmanın maksimum canı
-        float health = 100f; // düşmanın şu anki canı
+        public float maxHealth = 100f; // düşmanın maksimum canı
+        public float health = 100f; // düşmanın şu anki canı
+        private Animator animator; // düşmanın animasyonlarını kontrol etmek için
+        public float attackRange = 2f;
 
         // coin manager
         private CoinManager coinManager;
@@ -24,6 +26,7 @@ namespace Scripts.Enemy
             agent = GetComponent<NavMeshAgent>();
             agent.speed = speed; // düşmanın hızını ayarla
             healthbar = GetComponentInChildren<Healthbar>(); // sağlık çubuğu scriptini al
+            animator = GetComponent<Animator>(); // düşmanın animasyonlarını kontrol etmek için
         }
 
         // Start is called before the first frame update
@@ -38,7 +41,20 @@ namespace Scripts.Enemy
         // Update is called once per frame
         void Update()
         {
-            agent.SetDestination(target.transform.position); // düşmanı oyuncuya doğru hareket ettir
+            // hedefe olan mesafeyi hesapla
+            float distance = Vector3.Distance(transform.position, target.transform.position);
+
+            if (distance <= attackRange) // attack range içinde ise
+            {
+                // Saldırı animasyonunu başlat
+                animator.SetBool("isAttacking", true);
+
+            }
+            else
+            {
+                agent.SetDestination(target.transform.position); // Takip et
+                animator.SetBool("isAttacking", false);          // Saldırı animasyonunu iptal et
+            }
         }
 
 

@@ -14,9 +14,11 @@ namespace Scripts.Player
         public PlayerData playerData;
         private Camera cam;
         private float speed = 5f; // Oyuncunun hareket hızı
+        Animator anim;
 
         void Awake()
         {
+            anim = GetComponent<Animator>(); // Animator bileşenini al
             agent = GetComponent<NavMeshAgent>();
         }
 
@@ -42,7 +44,13 @@ namespace Scripts.Player
                 {
                     // NavMeshAgent'i hedef konuma hareket ettir
                     agent.SetDestination(hit.point);
+                    anim.SetBool("isRunning", true); // Koşma animasyonunu başlat
                 }
+            }
+            // Hedefe ulaştıysa idle'a dön
+            if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
+            {
+                anim.SetBool("isRunning", false); // Idle'a geç
             }
         }
     }
