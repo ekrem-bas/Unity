@@ -25,6 +25,7 @@ namespace Scripts.Enemy
 
         void SpawnEnemy()
         {
+            int randomIndex = Random.Range(0, enemyPrefabs.Length); // düşman prefab'larından rastgele birini seç
             if (maxEnemyCount > 0)
             { // Random olarak spawn edilecek pozisyonu belirle
                 Vector3 spawnPosition;
@@ -43,7 +44,7 @@ namespace Scripts.Enemy
                     );
 
                 // Quaternion.identity = nesnein rotasyonu olmadan varsayılan olarak oluşturulması
-                Instantiate(enemyPrefabs[0], spawnPosition, Quaternion.identity);
+                Instantiate(enemyPrefabs[randomIndex], spawnPosition, Quaternion.identity);
                 maxEnemyCount--;
             }
             else

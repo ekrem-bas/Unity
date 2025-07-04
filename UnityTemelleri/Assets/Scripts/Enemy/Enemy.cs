@@ -5,14 +5,20 @@ using UnityEngine.AI;
 
 namespace Scripts.Enemy
 {
+    public enum EnemyType
+    {
+        Swordsman,
+        Archer
+    }
     public class Enemy : MonoBehaviour
     {
         // Tüm düşmanları tutan static liste
+        public EnemyType enemyType; // düşmanın tipi
+        public float archerDistance = 10f;
         public static List<GameObject> allEnemies = new List<GameObject>();
         [SerializeField] private GameObject target; // oyuncu
-        private NavMeshAgent agent; // NavMeshAgent bileşeni
+        public NavMeshAgent agent; // NavMeshAgent bileşeni
         float speed = 2f; // düşmanın hareket hızı
-
         [SerializeField] private Healthbar healthbar; // sağlık çubuğu scripti
         public float maxHealth = 100f; // düşmanın maksimum canı
         public float health = 100f; // düşmanın şu anki canı
@@ -41,22 +47,39 @@ namespace Scripts.Enemy
         // Update is called once per frame
         void Update()
         {
-            // hedefe olan mesafeyi hesapla
-            float distance = Vector3.Distance(transform.position, target.transform.position);
-
-            if (distance <= attackRange) // attack range içinde ise
+            if (enemyType == EnemyType.Swordsman)
             {
-                // Saldırı animasyonunu başlat
-                animator.SetBool("isAttacking", true);
+                // hedefe olan mesafeyi hesapla
+                float distance = Vector3.Distance(transform.position, target.transform.position);
 
+                if (distance <= attackRange) // attack range içinde ise
+                {
+                    // Saldırı animasyonunu başlat
+                    animator.SetBool("isAttacking", true);
+
+                }
+                else
+                {
+                    agent.SetDestination(target.transform.position); // Takip et
+                    animator.SetBool("isAttacking", false);          // Saldırı animasyonunu iptal et
+                }
             }
-            else
+            else if (enemyType == EnemyType.Archer)
             {
-                agent.SetDestination(target.transform.position); // Takip et
-                animator.SetBool("isAttacking", false);          // Saldırı animasyonunu iptal et
+                float distance = Vector3.Distance(transform.position, target.transform.position);
+                if (distance <= archerDistance)
+                {
+                    // okçu hedefe belirli mesafede dursun
+                    agent.SetDestination(transform.position); // dur
+                    animator.SetBool("isWalking", false);
+                }
+                else
+                {
+                    agent.SetDestination(target.transform.position); // hedefe doğru hareket et
+                    animator.SetBool("isWalking", true);
+                }
             }
         }
-
 
         public void TakeDamage(float damage)
         {
@@ -76,6 +99,18 @@ namespace Scripts.Enemy
         void OnDestroy()
         {
             allEnemies.Remove(gameObject);
+        }
+
+        public Transform arrowSpawnPoint;
+        public GameObject bulletPrefab;
+        public float bulletSpeed = 20f;
+
+        public void ShootArrow()
+        {
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            if (player == null) return;
+
+            Bullet.Shoot(player, arrowSpawnPoint, bulletPrefab, 25f, bulletSpeed);
         }
     }
 }

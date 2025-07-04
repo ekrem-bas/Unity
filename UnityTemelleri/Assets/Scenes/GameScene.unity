@@ -109,7 +109,7 @@ NavMeshSettings:
     agentRadius: 0.5
     agentHeight: 2
     agentSlope: 45
-    agentClimb: 0.4
+    agentClimb: 0.5
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
     minRegionArea: 2
@@ -1031,7 +1031,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 88d4b65b6d484a1459f780db4b3edd0d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1336,7 +1336,7 @@ MonoBehaviour:
   plane: {fileID: 685585267}
   enemyPrefabs:
   - {fileID: 467950845262575299, guid: 3945068dcc0ae49eda1580e63f8435f1, type: 3}
-  - {fileID: 6567095910840321022, guid: 274e49829337d40c5b71f3a847517ce1, type: 3}
+  - {fileID: 2982320687030954682, guid: 274e49829337d40c5b71f3a847517ce1, type: 3}
 --- !u!4 &850764762
 Transform:
   m_ObjectHideFlags: 0
@@ -1521,7 +1521,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1611,7 +1611,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -79.765686, y: -60.131744}
+  m_AnchoredPosition: {x: -79.765625, y: -60.131836}
   m_SizeDelta: {x: 160, y: 68.83502}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1483260010
@@ -1824,7 +1824,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -167.76569, y: -60.131744}
+  m_AnchoredPosition: {x: -167.76562, y: -60.131836}
   m_SizeDelta: {x: 82.740234, y: 77.22589}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1532897261
@@ -2025,7 +2025,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 1
+  m_BaseOffset: 0.8
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &1636052784
@@ -2058,6 +2058,7 @@ MonoBehaviour:
   spawnPoint: {fileID: 1749804151}
   bulletSpeed: 40
   playerBulletDamage: 75
+  shootTarget: {fileID: 0}
 --- !u!114 &1636052786
 MonoBehaviour:
   m_ObjectHideFlags: 0

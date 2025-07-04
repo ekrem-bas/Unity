@@ -20,6 +20,10 @@ public class Bullet : MonoBehaviour
 
             Destroy(gameObject); // Mermiyi yok et
         }
+        else if (other.gameObject.CompareTag("Player"))
+        {
+            Destroy(gameObject);
+        }
     }
 
     public static void Shoot(GameObject target, Transform bulletSpawnPoint, GameObject bulletPrefab, float damage = 50f, float speed = 20f, float lifetime = 7f)
@@ -27,7 +31,8 @@ public class Bullet : MonoBehaviour
         if (target == null || bulletPrefab == null || bulletSpawnPoint == null) return;
 
         // Hedefe doğru yön hesapla
-        Vector3 direction = (target.transform.position - bulletSpawnPoint.transform.position).normalized;
+        Collider targetCollider = target.GetComponent<Collider>();
+        Vector3 direction = (targetCollider.bounds.center - bulletSpawnPoint.transform.position).normalized;
 
         // Bullet'ın hedefe doğru bakması için rotation hesapla
         // Eğer bullet'ın ucu Z ekseni ise (normal):

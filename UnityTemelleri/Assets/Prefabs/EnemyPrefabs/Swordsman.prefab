@@ -277,11 +277,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: cb3ee7db3791b40b0b82cdd7e291e097, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.038
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cb3ee7db3791b40b0b82cdd7e291e097, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.041
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cb3ee7db3791b40b0b82cdd7e291e097, type: 3}
       propertyPath: m_LocalPosition.z
@@ -319,6 +319,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Swordsman
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cb3ee7db3791b40b0b82cdd7e291e097, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: cb3ee7db3791b40b0b82cdd7e291e097, type: 3}
       propertyPath: m_Controller
       value: 
@@ -336,6 +340,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: cb3ee7db3791b40b0b82cdd7e291e097, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8405515477706573266}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: cb3ee7db3791b40b0b82cdd7e291e097, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7270905306212091645}
   m_SourcePrefab: {fileID: 100100000, guid: cb3ee7db3791b40b0b82cdd7e291e097, type: 3}
 --- !u!1 &467950845262575299 stripped
 GameObject:
@@ -376,8 +383,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea2126e413f8e49398059e19b5b4176b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyType: 0
+  archerDistance: 10
   target: {fileID: 0}
+  agent: {fileID: 362274147898287416}
   healthbar: {fileID: 1142097402948066568}
+  maxHealth: 100
+  health: 100
+  attackRange: 2
+--- !u!136 &7270905306212091645
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 467950845262575299}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.3
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!4 &951858744303053945 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: cb3ee7db3791b40b0b82cdd7e291e097, type: 3}

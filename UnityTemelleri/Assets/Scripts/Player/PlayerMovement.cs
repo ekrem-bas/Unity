@@ -31,26 +31,29 @@ namespace Scripts.Player
         // Update is called once per frame
         void Update()
         {
-            // Fare sol tusuna basildiginda ve UI elemanlari uzerinde degilse
-            if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
+            if (agent != null)
             {
-                // Fare sol tusuna basildiginda fare konumunu al
-                Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-                // RaycastHit yapisi ile raycast sonucunu tut
-                RaycastHit hit;
-                // Raycast ile fare konumundaki objeyi kontrol et
-                // GroundLayerMask ile sadece "Ground" katmanındaki objelere bak
-                if (Physics.Raycast(ray, out hit))
+                // Fare sol tusuna basildiginda ve UI elemanlari uzerinde degilse
+                if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
                 {
-                    // NavMeshAgent'i hedef konuma hareket ettir
-                    agent.SetDestination(hit.point);
-                    anim.SetBool("isRunning", true); // Koşma animasyonunu başlat
+                    // Fare sol tusuna basildiginda fare konumunu al
+                    Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+                    // RaycastHit yapisi ile raycast sonucunu tut
+                    RaycastHit hit;
+                    // Raycast ile fare konumundaki objeyi kontrol et
+                    // GroundLayerMask ile sadece "Ground" katmanındaki objelere bak
+                    if (Physics.Raycast(ray, out hit))
+                    {
+                        // NavMeshAgent'i hedef konuma hareket ettir
+                        agent.SetDestination(hit.point);
+                        anim.SetBool("isRunning", true); // Koşma animasyonunu başlat
+                    }
                 }
-            }
-            // Hedefe ulaştıysa idle'a dön
-            if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
-            {
-                anim.SetBool("isRunning", false); // Idle'a geç
+                // Hedefe ulaştıysa idle'a dön
+                if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
+                {
+                    anim.SetBool("isRunning", false); // Idle'a geç
+                }
             }
         }
     }
