@@ -11,9 +11,9 @@ namespace Scripts.Enemy
         Vector3 planeSize; // plane'in boyutu
         [SerializeField] private GameObject[] enemyPrefabs; // düşman prefab
                                                             // oyunucya olan minimum spawn mesafesi
-        private float minSpawnDistance = 2f;
+        public float minSpawnDistance = 2f;
         // maksimum düşman sayısı
-        private int maxEnemyCount = 100;
+        public int maxEnemyCount = 100;
 
         // Start is called before the first frame update
         void Start()

@@ -6,7 +6,7 @@ using Scripts.Enemy;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private float damage = 50f; // Mermi hasarı
-
+    public CoinManager coinManager;
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Enemy"))
@@ -22,8 +22,21 @@ public class Bullet : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("Player"))
         {
+            if (coinManager.coinCount > 100)
+            {
+                coinManager.coinCount -= 100;
+            }
+            else
+            {
+                coinManager.coinCount = 0; // Coin sayısı 0'ın altına düşmesin
+            }
             Destroy(gameObject);
         }
+    }
+
+    void Start()
+    {
+        coinManager = FindObjectOfType<CoinManager>(); // CoinManager'ı bul
     }
 
     public static void Shoot(GameObject target, Transform bulletSpawnPoint, GameObject bulletPrefab, float damage = 50f, float speed = 20f, float lifetime = 7f)
