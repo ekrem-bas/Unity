@@ -480,7 +480,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea2126e413f8e49398059e19b5b4176b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyType: 2
+  enemyType: 1
   wizardDistance: 10
   target: {fileID: 0}
   agent: {fileID: 350177396759375057}
@@ -490,4 +490,4 @@ MonoBehaviour:
   magicSpanwPoint: {fileID: 5866017562219531561}
   magicPrefab: {fileID: 2282659791004369331, guid: aef9cef5a49644e72ac22f6c7cb543b9, type: 3}
   magicSpeed: 20
-  magicDamage: 25
+  magicDamage: 20

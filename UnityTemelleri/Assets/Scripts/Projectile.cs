@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using Scripts.Enemy;
 public class Projectile : MonoBehaviour
 {
     public float damage; // Mermi hasarı

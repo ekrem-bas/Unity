@@ -7,19 +7,7 @@ public class PlayerData : ScriptableObject
 {
     public GameObject[] characterPrefabs; // Karakter prefab'ları
     public GameObject selectedCharacterPrefab; // Seçilen karakter prefab'ı
-    void Start()
-    {
-        string selectedCharacterName = PlayerPrefs.GetString("SelectedCharacterName", "");
-        if (!string.IsNullOrEmpty(selectedCharacterName))
-        {
-            foreach (var prefab in characterPrefabs)
-            {
-                if (prefab.name == selectedCharacterName)
-                {
-                    selectedCharacterPrefab = prefab; // Seçilen karakter prefab'ını ayarla
-                    return; // Seçilen karakter bulundu, döngüden çık
-                }
-            }
-        }
-    }
+    public float maxHealth; // Oyuncunun maksimum canı
+    public float health; // Oyuncunun şu anki canı
+    public float speed; // Oyuncunun hızı
 }

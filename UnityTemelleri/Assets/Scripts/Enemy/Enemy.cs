@@ -8,7 +8,6 @@ namespace Scripts.Enemy
     public enum EnemyType
     {
         Swordsman,
-        Archer,
         Wizard
     }
     public class Enemy : MonoBehaviour
@@ -21,7 +20,6 @@ namespace Scripts.Enemy
         public NavMeshAgent agent; // NavMeshAgent bileşeni
         float speed = 2f; // düşmanın hareket hızı
         [SerializeField] private Healthbar healthbar; // sağlık çubuğu scripti
-        // BURASI STATIC OLDU SIKINTI ÇIKARSA BURADAN
         public static float maxHealth = 100f; // düşmanın maksimum canı
         public float health = maxHealth; // düşmanın şu anki canı
         private Animator animator; // düşmanın animasyonlarını kontrol etmek için
@@ -74,12 +72,15 @@ namespace Scripts.Enemy
                     // okçu hedefe belirli mesafede dursun
                     agent.SetDestination(transform.position); // dur
                     animator.SetBool("isWalking", false);
+                    // agent ile degil lookAt ile hedefe bak
                     agent.updateRotation = false;
+                    transform.LookAt(target.transform.position); // hedefe bak
                 }
                 else
                 {
                     agent.SetDestination(target.transform.position); // hedefe doğru hareket et
                     animator.SetBool("isWalking", true);
+                    agent.updateRotation = true; // düşman hedefe bakabilsin
                 }
             }
         }
@@ -107,7 +108,7 @@ namespace Scripts.Enemy
         public Transform magicSpanwPoint;
         public GameObject magicPrefab;
         public float magicSpeed = 20f;
-        public float magicDamage = 25f;
+        public float magicDamage = 20f;
         public void MagicAttack()
         {
             GameObject player = GameObject.FindGameObjectWithTag("Player");

@@ -11,15 +11,16 @@ namespace Scripts.Player
     {
         // Oyuncuyu hareket ettirirken kullanilacak olan NavMeshAgent
         [SerializeField] private NavMeshAgent agent;
-        public PlayerData playerData;
         private Camera cam;
-        private float speed = 5f; // Oyuncunun hareket hızı
+        public PlayerData playerData;
+        private float speed; // Oyuncunun hareket hızı
         Animator anim;
 
         void Awake()
         {
             anim = GetComponent<Animator>(); // Animator bileşenini al
             agent = GetComponent<NavMeshAgent>();
+            speed = playerData.speed; // PlayerData'dan hızı al
         }
 
         void Start()

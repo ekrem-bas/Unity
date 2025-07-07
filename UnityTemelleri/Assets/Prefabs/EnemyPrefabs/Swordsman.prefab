@@ -396,7 +396,7 @@ MonoBehaviour:
   magicSpanwPoint: {fileID: 0}
   magicPrefab: {fileID: 0}
   magicSpeed: 20
-  magicDamage: 25
+  magicDamage: 1
 --- !u!136 &7270905306212091645
 CapsuleCollider:
   m_ObjectHideFlags: 0

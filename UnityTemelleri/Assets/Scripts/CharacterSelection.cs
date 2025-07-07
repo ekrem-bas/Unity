@@ -12,11 +12,7 @@ public class CharacterSelection : MonoBehaviour
     public GameObject characterSpawnPoint; // Karakterin spawn edileceği nokta
     public Rigidbody currentRigidbody; // Şu anki karakterin Rigidbody bileşeni
     public NavMeshAgent currentNavMeshAgent; // Şu anki karakterin NavMeshAgent bileşeni
-
-    public void Start()
-    {
-        PlayerPrefs.DeleteKey("SelectedCharacterName"); // Seçilen karakter ismini temizle
-    }
+    public PlayerData playerData; // PlayerData scripti
     public void ShowCharacter(int index)
     {
         if (currentCharacter != null)
@@ -28,6 +24,8 @@ public class CharacterSelection : MonoBehaviour
         currentRigidbody = currentCharacter.GetComponent<Rigidbody>(); // Rigidbody bileşenini al
         currentRigidbody.isKinematic = true; // Rigidbody'yi kinematik yap
         currentNavMeshAgent = currentCharacter.GetComponent<NavMeshAgent>();
+        // burada healthbar'a erişmek istediği için hata geliyor
+        currentCharacter.GetComponent<PlayerHealthManager>().enabled = false;
         if (currentNavMeshAgent != null)
         {
             Destroy(currentNavMeshAgent); // NavMeshAgent'ı tamamen sil
@@ -36,9 +34,7 @@ public class CharacterSelection : MonoBehaviour
 
     public void SelectCharacter()
     {
-        PlayerPrefs.SetString("SelectedCharacterName", characterPrefabs[currentIndex].name);
-        PlayerPrefs.Save(); // Seçilen karakter ismini kaydet
-        Debug.Log("Selected Character: " + PlayerPrefs.GetString("SelectedCharacterName"));
-        SceneManager.LoadScene("MenuScene"); // Menu sahnesine geç
+        playerData.selectedCharacterPrefab = characterPrefabs[currentIndex]; // Seçilen karakteri PlayerData'ya ata
+        SceneManager.LoadScene("MainMenuScene"); // Menu sahnesine geç
     }
 }

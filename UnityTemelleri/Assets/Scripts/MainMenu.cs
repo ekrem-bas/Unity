@@ -4,9 +4,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
+    public PlayerData playerData;
+
     public void PlayGame()
     {
-        if (PlayerPrefs.GetString("SelectedCharacterName") == "")
+        if (playerData.selectedCharacterPrefab == null)
         {
             Debug.LogWarning("No character selected. Please choose a character first.");
             return;
@@ -15,7 +17,6 @@ public class MainMenu : MonoBehaviour
         {
             SceneManager.LoadScene("GameScene");
         }
-
     }
 
     public void ChooseCharacter()

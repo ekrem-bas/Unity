@@ -1249,6 +1249,9 @@ MonoBehaviour:
   - {fileID: 9075187007969656530, guid: d9ba52aaf0f99449db0b36ead288632e, type: 3}
   - {fileID: 6530250335670728751, guid: 41ea072b148524677a4165afe870b08b, type: 3}
   characterSpawnPoint: {fileID: 96565892}
+  currentRigidbody: {fileID: 0}
+  currentNavMeshAgent: {fileID: 0}
+  playerData: {fileID: 11400000, guid: c4d55102c5e3047c2b54c5022114f445, type: 2}
 --- !u!1 &1821202839
 GameObject:
   m_ObjectHideFlags: 0
