@@ -92,17 +92,20 @@ namespace Scripts.Enemy
 
             if (health <= 0) // Eğer canı sıfır veya altına düşerse
             {
-                Destroy(gameObject); // düşmanı yok et
-
+                animator.SetTrigger("Death"); // Ölüm animasyonunu başlat
+                agent.isStopped = true; // düşmanı durdur
+                animator.SetBool("isWalking", false); // yürüyüş animasyonunu durdur
+                animator.SetBool("isAttacking", false); // saldırı animasyonunu durdur
+                this.healthbar.gameObject.SetActive(false); // sağlık çubuğunu gizle
+                allEnemies.Remove(gameObject); // düşmanı listeden kaldır
                 coinManager = FindObjectOfType<CoinManager>();
                 coinManager.coinCount += 50; // 10 coin ekle
             }
         }
 
-        // Nesne yok edilirken çağrılır
-        void OnDestroy()
+        public void DestroySelf()
         {
-            allEnemies.Remove(gameObject);
+            Destroy(gameObject); // düşmanı yok et
         }
 
         public Transform magicSpanwPoint;
