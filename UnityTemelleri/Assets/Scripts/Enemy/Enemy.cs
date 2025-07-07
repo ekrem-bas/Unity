@@ -130,5 +130,19 @@ namespace Scripts.Enemy
                 Destroy(other.gameObject); // Magic item yok et
             }
         }
+
+        // kılıcın collider'i sadece attack animasyonunda aktif olsun
+        public Collider swordCollider;
+        // kılıcın hasarı
+        public float swordDamage = 10f;
+        public void SwordAttackStart()
+        {
+            swordCollider.enabled = true;
+        }
+
+        public void SwordAttackEnd()
+        {
+            swordCollider.enabled = false;
+        }
     }
 }

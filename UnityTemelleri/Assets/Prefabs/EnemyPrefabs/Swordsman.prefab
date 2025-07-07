@@ -192,6 +192,87 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthbarImage: {fileID: 5780194169610617640}
+--- !u!1 &6812710834219376812
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6903918291454645671}
+  - component: {fileID: 8445638005959985045}
+  - component: {fileID: 7624770944566074911}
+  m_Layer: 0
+  m_Name: Sword
+  m_TagString: Sword
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6903918291454645671
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6812710834219376812}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.037882216, y: -0.02128974, z: 0.48102036, w: 0.8756319}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1372115517801690202}
+  m_LocalEulerAnglesHint: {x: -2.629, y: -4.233, z: 57.661}
+--- !u!54 &8445638005959985045
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6812710834219376812}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
+--- !u!65 &7624770944566074911
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6812710834219376812}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 0.1916557, y: 1.115936, z: 0.10209904}
+  m_Center: {x: 0.06864349, y: 0.7031532, z: -0.0056703975}
 --- !u!1 &6828447167024089714
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,6 +414,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: cb3ee7db3791b40b0b82cdd7e291e097, type: 3}
       insertIndex: 0
       addedObject: {fileID: 6856726761709794186}
+    - targetCorrespondingSourceObject: {fileID: 1852576806548013000, guid: cb3ee7db3791b40b0b82cdd7e291e097, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6903918291454645671}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: cb3ee7db3791b40b0b82cdd7e291e097, type: 3}
       insertIndex: -1
@@ -397,6 +481,8 @@ MonoBehaviour:
   magicPrefab: {fileID: 0}
   magicSpeed: 20
   magicDamage: 1
+  swordCollider: {fileID: 7624770944566074911}
+  swordDamage: 10
 --- !u!136 &7270905306212091645
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -450,5 +536,10 @@ Rigidbody:
 --- !u!4 &951858744303053945 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: cb3ee7db3791b40b0b82cdd7e291e097, type: 3}
+  m_PrefabInstance: {fileID: 774362955674618770}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1372115517801690202 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1852576806548013000, guid: cb3ee7db3791b40b0b82cdd7e291e097, type: 3}
   m_PrefabInstance: {fileID: 774362955674618770}
   m_PrefabAsset: {fileID: 0}

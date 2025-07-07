@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Scripts.Enemy;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -33,10 +34,29 @@ public class PlayerHealthManager : MonoBehaviour
             healthbar.UpdateHealthbar(playerData.maxHealth, playerData.health);
             if (playerData.health <= 0)
             {
-                SceneManager.LoadScene("GameOverScene"); // Oyuncu öldüğünde GameOver sahnesine geç
+                EndGame();
             }
             // Mermiyi yok et
             Destroy(other.gameObject);
         }
+        else if (other.CompareTag("Sword"))
+        {
+            // kılıcın hasarı
+            float damage = other.GetComponentInParent<Enemy>().swordDamage;
+            // canı azalt
+            playerData.health -= damage;
+            // canı güncelle
+            healthbar.UpdateHealthbar(playerData.maxHealth, playerData.health); // Sağlık çubuğunu güncelle
+            // can bitince end game
+            if (playerData.health <= 0)
+            {
+                EndGame();
+            }
+        }
+    }
+
+    public void EndGame()
+    {
+        SceneManager.LoadScene("GameOverScene"); // Oyuncu öldüğünde GameOver sahnesine geç
     }
 }

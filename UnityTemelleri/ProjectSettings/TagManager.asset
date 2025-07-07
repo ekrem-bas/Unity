@@ -9,6 +9,7 @@ TagManager:
   - Tower
   - Ground
   - Magic
+  - Sword
   layers:
   - Default
   - TransparentFX
