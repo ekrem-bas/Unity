@@ -1336,7 +1336,9 @@ MonoBehaviour:
   plane: {fileID: 685585267}
   enemyPrefabs:
   - {fileID: 467950845262575299, guid: 3945068dcc0ae49eda1580e63f8435f1, type: 3}
-  - {fileID: 2982320687030954682, guid: 274e49829337d40c5b71f3a847517ce1, type: 3}
+  - {fileID: 8990211399758766439, guid: 0e2155678913c4490b11cb9f1eda50c5, type: 3}
+  minSpawnDistance: 2
+  maxEnemyCount: 100
 --- !u!4 &850764762
 Transform:
   m_ObjectHideFlags: 0

@@ -33,7 +33,7 @@ namespace Scripts.Tower
                 return;
             }
 
-            Bullet.Shoot(shootTarget, spawnPoint, bulletPrefab, towerData.damage, towerData.bulletSpeed); // Tower damage ile mermi at
+            Projectile.Shoot(shootTarget, spawnPoint, bulletPrefab, towerData.damage, towerData.bulletSpeed); // Tower damage ile mermi at
         }
     }
 }

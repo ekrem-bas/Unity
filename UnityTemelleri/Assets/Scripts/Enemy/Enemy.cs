@@ -8,20 +8,22 @@ namespace Scripts.Enemy
     public enum EnemyType
     {
         Swordsman,
-        Archer
+        Archer,
+        Wizard
     }
     public class Enemy : MonoBehaviour
     {
         // Tüm düşmanları tutan static liste
         public EnemyType enemyType; // düşmanın tipi
-        public float archerDistance = 10f;
+        public float wizardDistance = 10f;
         public static List<GameObject> allEnemies = new List<GameObject>();
         [SerializeField] private GameObject target; // oyuncu
         public NavMeshAgent agent; // NavMeshAgent bileşeni
         float speed = 2f; // düşmanın hareket hızı
         [SerializeField] private Healthbar healthbar; // sağlık çubuğu scripti
-        public float maxHealth = 100f; // düşmanın maksimum canı
-        public float health = 100f; // düşmanın şu anki canı
+        // BURASI STATIC OLDU SIKINTI ÇIKARSA BURADAN
+        public static float maxHealth = 100f; // düşmanın maksimum canı
+        public float health = maxHealth; // düşmanın şu anki canı
         private Animator animator; // düşmanın animasyonlarını kontrol etmek için
         public float attackRange = 2f;
 
@@ -64,14 +66,15 @@ namespace Scripts.Enemy
                     animator.SetBool("isAttacking", false);          // Saldırı animasyonunu iptal et
                 }
             }
-            else if (enemyType == EnemyType.Archer)
+            else if (enemyType == EnemyType.Wizard)
             {
                 float distance = Vector3.Distance(transform.position, target.transform.position);
-                if (distance <= archerDistance)
+                if (distance <= wizardDistance)
                 {
                     // okçu hedefe belirli mesafede dursun
                     agent.SetDestination(transform.position); // dur
                     animator.SetBool("isWalking", false);
+                    agent.updateRotation = false;
                 }
                 else
                 {
@@ -101,16 +104,30 @@ namespace Scripts.Enemy
             allEnemies.Remove(gameObject);
         }
 
-        public Transform arrowSpawnPoint;
-        public GameObject bulletPrefab;
-        public float bulletSpeed = 20f;
-
-        public void ShootArrow()
+        public Transform magicSpanwPoint;
+        public GameObject magicPrefab;
+        public float magicSpeed = 20f;
+        public float magicDamage = 25f;
+        public void MagicAttack()
         {
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             if (player == null) return;
 
-            Bullet.Shoot(player, arrowSpawnPoint, bulletPrefab, 25f, bulletSpeed);
+            Projectile.Shoot(player, magicSpanwPoint, magicPrefab, magicDamage, magicSpeed);
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Bullet"))
+            {
+                this.TakeDamage(other.GetComponent<Projectile>().damage); // Mermiden hasar al
+                Destroy(other.gameObject); // Mermiyi yok et
+            }
+
+            if (other.CompareTag("Magic"))
+            {
+                Destroy(other.gameObject); // Magic item yok et
+            }
         }
     }
 }

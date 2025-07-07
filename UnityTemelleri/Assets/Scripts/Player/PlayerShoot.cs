@@ -15,9 +15,12 @@ namespace Scripts.Player
         public void Shoot()
         {
             shootTarget = GetComponent<EnemyDetector>().GetClosestEnemy(); // En yakın düşmanı al
-            if (shootTarget == null) return; // Eğer en yakın düşman yoksa atış yapma
-
-            Bullet.Shoot(shootTarget, spawnPoint, bulletPrefab, playerBulletDamage, bulletSpeed); // Player damage ile mermi at
+            // Eğer en yakın düşman yoksa atış yapma
+            if (shootTarget == null)
+            {
+                return;
+            }
+            Projectile.Shoot(shootTarget, spawnPoint, bulletPrefab, playerBulletDamage, bulletSpeed); // Player damage ile mermi at
         }
     }
 }
