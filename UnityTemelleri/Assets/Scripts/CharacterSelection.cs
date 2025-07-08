@@ -9,8 +9,8 @@ using UnityEngine.SceneManagement;
 public class CharacterSelection : MonoBehaviour
 {
     public GameObject[] characterPrefabs; // Karakter prefab'ları
-    private int currentIndex = 0; // Seçili karakterin indeksi
-    private GameObject currentCharacter; // Şu anki karakter objesi
+    public int currentIndex = -1; // Seçili karakterin indeksi
+    public GameObject currentCharacter; // Şu anki karakter objesi
     public GameObject characterSpawnPoint; // Karakterin spawn edileceği nokta
     public Rigidbody currentRigidbody; // Şu anki karakterin Rigidbody bileşeni
     public NavMeshAgent currentNavMeshAgent; // Şu anki karakterin NavMeshAgent bileşeni
@@ -55,6 +55,18 @@ public class CharacterSelection : MonoBehaviour
 
     public void SelectCharacter()
     {
+        if (currentIndex < 0 && playerData.selectedCharacterPrefab == null)
+        {
+            Debug.LogWarning("No character selected.");
+            SceneManager.LoadScene("MainMenuScene");
+            return;
+        }
+        else if (currentIndex < 0 && playerData.selectedCharacterPrefab != null)
+        {
+            Debug.LogWarning("Character already selected. Returning to main menu.");
+            SceneManager.LoadScene("MainMenuScene");
+            return;
+        }
         playerData.selectedCharacterPrefab = characterPrefabs[currentIndex]; // Seçilen karakteri PlayerData'ya ata
         SceneManager.LoadScene("MainMenuScene"); // Menu sahnesine geç
     }
