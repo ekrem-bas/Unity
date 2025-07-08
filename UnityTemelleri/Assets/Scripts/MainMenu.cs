@@ -10,8 +10,8 @@ public class MainMenu : MonoBehaviour
     {
         if (!isGameStarted)
         {
-            playerData.selectedCharacterPrefab = null; // Başlangıçta seçilen karakter prefab'ı yok
-            isGameStarted = true; // Oyun başlatıldı olarak işaretle
+            isGameStarted = true;
+            playerData.selectedCharacterPrefab = null;
         }
     }
 
