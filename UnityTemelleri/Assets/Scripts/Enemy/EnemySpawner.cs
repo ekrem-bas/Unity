@@ -8,9 +8,10 @@ namespace Scripts.Enemy
     {
         [SerializeField] private GameObject player; // oyuncu
         [SerializeField] private GameObject plane; // plane
+        public static List<GameObject> allEnemies = new List<GameObject>();
         Vector3 planeSize; // plane'in boyutu
         [SerializeField] private GameObject[] enemyPrefabs; // düşman prefab
-                                                            // oyunucya olan minimum spawn mesafesi
+        // oyunucya olan minimum spawn mesafesi
         public float minSpawnDistance = 2f;
         // maksimum düşman sayısı
         public int maxEnemyCount = 100;
@@ -21,6 +22,7 @@ namespace Scripts.Enemy
             // plane'in boyutunu al
             planeSize = plane.GetComponent<MeshRenderer>().bounds.size;
             InvokeRepeating("SpawnEnemy", 0f, 1f); // her saniyede bir SpawnEnemy fonksiyonunu çağır
+            allEnemies.Clear(); // tüm düşman listesini temizle
         }
 
         void SpawnEnemy()

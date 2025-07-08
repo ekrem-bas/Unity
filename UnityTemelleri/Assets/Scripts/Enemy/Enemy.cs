@@ -15,7 +15,7 @@ namespace Scripts.Enemy
         // Tüm düşmanları tutan static liste
         public EnemyType enemyType; // düşmanın tipi
         public float wizardDistance = 10f;
-        public static List<GameObject> allEnemies = new List<GameObject>();
+
         [SerializeField] private GameObject target; // oyuncu
         public NavMeshAgent agent; // NavMeshAgent bileşeni
         float speed = 2f; // düşmanın hareket hızı
@@ -39,7 +39,7 @@ namespace Scripts.Enemy
         void Start()
         {
             // Bu düşmanı listeye ekle
-            allEnemies.Add(gameObject);
+            EnemySpawner.allEnemies.Add(gameObject);
             target = GameObject.FindGameObjectWithTag("Player");
             healthbar.UpdateHealthbar(maxHealth, health);
         }
@@ -97,7 +97,7 @@ namespace Scripts.Enemy
                 animator.SetBool("isWalking", false); // yürüyüş animasyonunu durdur
                 animator.SetBool("isAttacking", false); // saldırı animasyonunu durdur
                 this.healthbar.gameObject.SetActive(false); // sağlık çubuğunu gizle
-                allEnemies.Remove(gameObject); // düşmanı listeden kaldır
+                EnemySpawner.allEnemies.Remove(gameObject); // düşmanı listeden kaldır
                 coinManager = FindObjectOfType<CoinManager>();
                 coinManager.coinCount += 50; // 10 coin ekle
             }

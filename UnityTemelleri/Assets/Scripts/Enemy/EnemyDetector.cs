@@ -8,7 +8,12 @@ namespace Scripts.Enemy
     {
         [SerializeField] private GameObject closestEnemy; // En yakın düşman
         [SerializeField] private GameObject owner;
+        public EnemySpawner enemySpawner; // EnemySpawner referansı
 
+        private void Start()
+        {
+            enemySpawner = FindObjectOfType<EnemySpawner>(); // EnemySpawner'ı bul
+        }
         // Update is called once per frame
         void Update()
         {
@@ -25,13 +30,13 @@ namespace Scripts.Enemy
         private GameObject ClosestEnemy()
         {
             // Eğer hiç düşman yoksa null döndür
-            if (Enemy.allEnemies.Count == 0)
+            if (EnemySpawner.allEnemies.Count == 0)
                 return null;
 
-            GameObject closest = Enemy.allEnemies[0];
+            GameObject closest = EnemySpawner.allEnemies[0];
             float closestDistance = Mathf.Infinity; // En yakın mesafe başlangıçta sonsuz olarak ayarlanır
 
-            foreach (GameObject enemy in Enemy.allEnemies)
+            foreach (GameObject enemy in EnemySpawner.allEnemies)
             {
                 float distance = Vector3.Distance(transform.position, enemy.transform.position); // Düşman ile bu nesne arasındaki mesafeyi hesapla
                 if (distance < closestDistance) // Eğer bu düşman daha yakınsa
