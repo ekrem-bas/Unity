@@ -8,10 +8,13 @@ public class PlayerHealthManager : MonoBehaviour
 {
     public PlayerData playerData;
     public Healthbar healthbar; // Sağlık çubuğu scripti
-    // Start is called before the first frame update
+    public Animator animator;
+    public static bool isPlayerDead = false; // Oyuncunun ölme durumu
 
     void Start()
     {
+        isPlayerDead = false; // Oyuncu başlangıçta ölmemiş
+        animator = GetComponent<Animator>(); // Animator bileşenini al
         healthbar = FindObjectOfType<Healthbar>(); // Sağlık çubuğu scriptini bul
         if (healthbar == null)
         {
@@ -34,7 +37,8 @@ public class PlayerHealthManager : MonoBehaviour
             healthbar.UpdateHealthbar(playerData.maxHealth, playerData.health);
             if (playerData.health <= 0)
             {
-                EndGame();
+                isPlayerDead = true; // Oyuncu öldü 
+                animator.SetTrigger("Death");
             }
             // Mermiyi yok et
             Destroy(other.gameObject);
@@ -50,9 +54,15 @@ public class PlayerHealthManager : MonoBehaviour
             // can bitince end game
             if (playerData.health <= 0)
             {
-                EndGame();
+                isPlayerDead = true; // Oyuncu öldü
+                animator.SetTrigger("Death");
             }
         }
+    }
+
+    public void DestroySelf()
+    {
+        EndGame();
     }
 
     public void EndGame()

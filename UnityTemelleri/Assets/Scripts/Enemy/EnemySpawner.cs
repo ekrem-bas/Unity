@@ -16,13 +16,17 @@ namespace Scripts.Enemy
         // maksimum düşman sayısı
         public int maxEnemyCount = 100;
 
+        void Awake()
+        {
+            // Tüm düşmanları temizle
+            allEnemies.Clear();
+        }
         // Start is called before the first frame update
         void Start()
         {
             // plane'in boyutunu al
             planeSize = plane.GetComponent<MeshRenderer>().bounds.size;
             InvokeRepeating("SpawnEnemy", 0f, 1f); // her saniyede bir SpawnEnemy fonksiyonunu çağır
-            allEnemies.Clear(); // tüm düşman listesini temizle
         }
 
         void SpawnEnemy()

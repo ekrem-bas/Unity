@@ -32,7 +32,7 @@ namespace Scripts.Player
         // Update is called once per frame
         void Update()
         {
-            if (agent != null)
+            if (agent != null && !PlayerHealthManager.isPlayerDead) // Eğer NavMeshAgent varsa ve oyuncu ölmemişse
             {
                 // Fare sol tusuna basildiginda ve UI elemanlari uzerinde degilse
                 if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())

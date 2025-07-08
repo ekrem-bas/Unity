@@ -16,12 +16,6 @@ namespace Scripts.Tower
             InvokeRepeating("Shoot", 0f, towerData.shootTimer);
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
-
         void Shoot()
         {
             EnemyDetector detector = GetComponent<EnemyDetector>();

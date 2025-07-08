@@ -5,6 +5,15 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public PlayerData playerData;
+    private static bool isGameStarted = false;
+    void Awake()
+    {
+        if (!isGameStarted)
+        {
+            playerData.selectedCharacterPrefab = null; // Başlangıçta seçilen karakter prefab'ı yok
+            isGameStarted = true; // Oyun başlatıldı olarak işaretle
+        }
+    }
 
     public void PlayGame()
     {

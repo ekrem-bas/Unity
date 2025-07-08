@@ -10,7 +10,7 @@ namespace Scripts.Enemy
         [SerializeField] private GameObject owner;
         public EnemySpawner enemySpawner; // EnemySpawner referansı
 
-        private void Start()
+        void Start()
         {
             enemySpawner = FindObjectOfType<EnemySpawner>(); // EnemySpawner'ı bul
         }
@@ -22,8 +22,6 @@ namespace Scripts.Enemy
             if (closestEnemy != null)
             {
                 owner.transform.LookAt(closestEnemy.transform); // Oyuncu en yakın düşmana bakar
-                float yOffset = 45f;
-                owner.transform.Rotate(0, yOffset, 0);
             }
         }
 

@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Scripts.Enemy;
+using Scripts.Player;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
@@ -13,6 +15,7 @@ public class CharacterSelection : MonoBehaviour
     public Rigidbody currentRigidbody; // Şu anki karakterin Rigidbody bileşeni
     public NavMeshAgent currentNavMeshAgent; // Şu anki karakterin NavMeshAgent bileşeni
     public PlayerData playerData; // PlayerData scripti
+
     public void ShowCharacter(int index)
     {
         if (currentCharacter != null)
@@ -20,15 +23,33 @@ public class CharacterSelection : MonoBehaviour
 
         currentIndex = index;
         currentCharacter = Instantiate(characterPrefabs[currentIndex], characterSpawnPoint.transform.position, Quaternion.identity);
-        currentCharacter.transform.rotation = Quaternion.Euler(0, 180, 0); // Karakteri doğru yönde döndür
-        currentRigidbody = currentCharacter.GetComponent<Rigidbody>(); // Rigidbody bileşenini al
-        currentRigidbody.isKinematic = true; // Rigidbody'yi kinematik yap
+        currentCharacter.transform.rotation = Quaternion.Euler(0, 135, 0);
+
+        currentRigidbody = currentCharacter.GetComponent<Rigidbody>();
+        currentRigidbody.isKinematic = true;
+
         currentNavMeshAgent = currentCharacter.GetComponent<NavMeshAgent>();
-        // burada healthbar'a erişmek istediği için hata geliyor
-        currentCharacter.GetComponent<PlayerHealthManager>().enabled = false;
+
+        // Hatalı scriptleri devre dışı bırak
+        var movement = currentCharacter.GetComponent<PlayerMovement>();
+        if (movement != null)
+            movement.enabled = false;
+
+        var healthManager = currentCharacter.GetComponent<PlayerHealthManager>();
+        if (healthManager != null)
+            healthManager.enabled = false;
+
+        var spawner = currentCharacter.GetComponent<EnemySpawner>();
+        if (spawner != null)
+            spawner.enabled = false;
+
+        var detector = currentCharacter.GetComponent<EnemyDetector>();
+        if (detector != null)
+            detector.enabled = false;
+
         if (currentNavMeshAgent != null)
         {
-            Destroy(currentNavMeshAgent); // NavMeshAgent'ı tamamen sil
+            Destroy(currentNavMeshAgent);
         }
     }
 

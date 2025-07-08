@@ -15,14 +15,13 @@ namespace Scripts.Enemy
         // Tüm düşmanları tutan static liste
         public EnemyType enemyType; // düşmanın tipi
         public float wizardDistance = 10f;
-
-        [SerializeField] private GameObject target; // oyuncu
+        public GameObject target; // oyuncu
         public NavMeshAgent agent; // NavMeshAgent bileşeni
         float speed = 2f; // düşmanın hareket hızı
-        [SerializeField] private Healthbar healthbar; // sağlık çubuğu scripti
+        public Healthbar healthbar; // sağlık çubuğu scripti
         public static float maxHealth = 100f; // düşmanın maksimum canı
         public float health = maxHealth; // düşmanın şu anki canı
-        private Animator animator; // düşmanın animasyonlarını kontrol etmek için
+        public Animator animator; // düşmanın animasyonlarını kontrol etmek için
         public float attackRange = 2f;
 
         // coin manager
@@ -47,40 +46,51 @@ namespace Scripts.Enemy
         // Update is called once per frame
         void Update()
         {
-            if (enemyType == EnemyType.Swordsman)
+            if (target == null) return;
+            if (PlayerHealthManager.isPlayerDead) // Eğer oyuncu ölmüşse
             {
-                // hedefe olan mesafeyi hesapla
-                float distance = Vector3.Distance(transform.position, target.transform.position);
-
-                if (distance <= attackRange) // attack range içinde ise
-                {
-                    // Saldırı animasyonunu başlat
-                    animator.SetBool("isAttacking", true);
-
-                }
-                else
-                {
-                    agent.SetDestination(target.transform.position); // Takip et
-                    animator.SetBool("isAttacking", false);          // Saldırı animasyonunu iptal et
-                }
+                StopAnimations(); // animasyonları durdur
+                return; // hiçbir şey yapma
             }
-            else if (enemyType == EnemyType.Wizard)
+            else
             {
-                float distance = Vector3.Distance(transform.position, target.transform.position);
-                if (distance <= wizardDistance)
+                if (enemyType == EnemyType.Swordsman)
                 {
-                    // okçu hedefe belirli mesafede dursun
-                    agent.SetDestination(transform.position); // dur
-                    animator.SetBool("isWalking", false);
-                    // agent ile degil lookAt ile hedefe bak
-                    agent.updateRotation = false;
-                    transform.LookAt(target.transform.position); // hedefe bak
+                    // hedefe olan mesafeyi hesapla
+                    float distance = Vector3.Distance(transform.position, target.transform.position);
+
+                    if (distance <= attackRange) // attack range içinde ise
+                    {
+                        // Saldırı animasyonunu başlat
+                        animator.SetBool("isAttacking", true);
+                        animator.SetBool("isRunning", true);
+                    }
+                    else
+                    {
+                        agent.SetDestination(target.transform.position); // Takip et
+                        animator.SetBool("isAttacking", false);
+                        animator.SetBool("isRunning", true);
+                    }
                 }
-                else
+                else if (enemyType == EnemyType.Wizard)
                 {
-                    agent.SetDestination(target.transform.position); // hedefe doğru hareket et
-                    animator.SetBool("isWalking", true);
-                    agent.updateRotation = true; // düşman hedefe bakabilsin
+                    animator.SetBool("isAttacking", true); // Saldırı animasyonunu durdur
+                    float distance = Vector3.Distance(transform.position, target.transform.position);
+                    if (distance <= wizardDistance)
+                    {
+                        // okçu hedefe belirli mesafede dursun
+                        agent.SetDestination(transform.position); // dur
+                        animator.SetBool("isWalking", false);
+                        // agent ile degil lookAt ile hedefe bak
+                        agent.updateRotation = false;
+                        transform.LookAt(target.transform.position); // hedefe bak
+                    }
+                    else
+                    {
+                        agent.SetDestination(target.transform.position); // hedefe doğru hareket et
+                        animator.SetBool("isWalking", true);
+                        agent.updateRotation = true; // düşman hedefe bakabilsin
+                    }
                 }
             }
         }
@@ -93,13 +103,11 @@ namespace Scripts.Enemy
             if (health <= 0) // Eğer canı sıfır veya altına düşerse
             {
                 animator.SetTrigger("Death"); // Ölüm animasyonunu başlat
-                agent.isStopped = true; // düşmanı durdur
-                animator.SetBool("isWalking", false); // yürüyüş animasyonunu durdur
-                animator.SetBool("isAttacking", false); // saldırı animasyonunu durdur
+                StopAnimations(); // animasyonları durdur
                 this.healthbar.gameObject.SetActive(false); // sağlık çubuğunu gizle
                 EnemySpawner.allEnemies.Remove(gameObject); // düşmanı listeden kaldır
                 coinManager = FindObjectOfType<CoinManager>();
-                coinManager.coinCount += 50; // 10 coin ekle
+                coinManager.coinCount += 50;
             }
         }
 
@@ -146,6 +154,15 @@ namespace Scripts.Enemy
         public void SwordAttackEnd()
         {
             swordCollider.enabled = false;
+        }
+
+        public void StopAnimations()
+        {
+            animator.SetBool("isAttacking", false); // Saldırı animasyonunu durdur
+            animator.SetBool("isWalking", false); // Yürüyüş animasyonunu durdur
+            animator.SetBool("isRunning", false); // Koşu animasyonunu durdur
+            agent.isStopped = true; // Düşmanı durdur
+            target = null; // Hedefi sıfırla
         }
     }
 }
