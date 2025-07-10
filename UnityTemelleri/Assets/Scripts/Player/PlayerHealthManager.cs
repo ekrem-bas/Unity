@@ -60,13 +60,18 @@ public class PlayerHealthManager : MonoBehaviour
         }
     }
 
+    private bool isGameOver = false;
+
     public void DestroySelf()
     {
+        if (isGameOver) return;
+        isGameOver = true;
         EndGame();
     }
 
     public void EndGame()
     {
-        SceneManager.LoadScene("GameOverScene"); // Oyuncu öldüğünde GameOver sahnesine geç
+        GameOverScene gameOverScene = FindObjectOfType<GameOverScene>();
+        gameOverScene.ShowGameOver(); // GameOverScene scriptini bul ve göster
     }
 }

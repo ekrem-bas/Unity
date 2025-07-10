@@ -10,6 +10,7 @@ TagManager:
   - Ground
   - Magic
   - Sword
+  - GameOverCanvas
   layers:
   - Default
   - TransparentFX

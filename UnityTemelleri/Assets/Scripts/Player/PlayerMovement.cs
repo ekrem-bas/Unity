@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Scripts.Enemy;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
@@ -37,6 +38,7 @@ namespace Scripts.Player
                 agent.isStopped = true; // NavMeshAgent'i durdur
                 agent.velocity = Vector3.zero; // Hızını sıfırla
                 this.enabled = false; // Bu scripti devre dışı bırak
+                this.GetComponent<EnemyDetector>().enabled = false; // EnemyDetector scriptini de devre dışı bırak
                 return; // Hiçbir şey yapma
             }
 

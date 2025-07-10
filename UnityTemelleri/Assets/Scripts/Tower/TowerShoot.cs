@@ -18,6 +18,12 @@ namespace Scripts.Tower
 
         void Shoot()
         {
+            if (PlayerHealthManager.isPlayerDead)
+            {
+                CancelInvoke("Shoot"); // Oyuncu öldüyse atışı durdur
+                return;
+            }
+
             EnemyDetector detector = GetComponent<EnemyDetector>();
             shootTarget = detector.GetClosestEnemy(); // En yakın düşmanı al
 
