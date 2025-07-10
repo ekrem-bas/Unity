@@ -2822,7 +2822,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   beamCursor: {fileID: 2800000, guid: 7789b657ea330f94d9b70d6d4a117aed, type: 3}
   hotspot: {x: 0, y: 0}
-  selectedSkill: 0
   areaIndicatorPrefab: {fileID: 4141057133647465524, guid: 4ba1233ba0f1a4abdb1ea914974138e9, type: 3}
   skillManager: {fileID: 1200927729}
 --- !u!4 &980222577

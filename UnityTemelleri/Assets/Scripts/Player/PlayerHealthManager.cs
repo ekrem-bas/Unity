@@ -25,6 +25,14 @@ public class PlayerHealthManager : MonoBehaviour
         healthbar.UpdateHealthbar(playerData.maxHealth, playerData.health); // Sağlık çubuğunu güncelle
     }
 
+    public void Death()
+    {
+        if (isPlayerDead) return;
+        isPlayerDead = true;
+        deathEffect.SetActive(true); // Ölüm efekti prefab'ını etkinleştir
+        animator.SetTrigger("Death");
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Magic"))
@@ -37,9 +45,7 @@ public class PlayerHealthManager : MonoBehaviour
             healthbar.UpdateHealthbar(playerData.maxHealth, playerData.health);
             if (playerData.health <= 0)
             {
-                isPlayerDead = true; // Oyuncu öldü 
-                animator.SetTrigger("Death");
-                deathEffect.SetActive(true); // Ölüm efektini aktif et
+                this.Death();
             }
             // Mermiyi yok et
             Destroy(other.gameObject);
@@ -55,9 +61,7 @@ public class PlayerHealthManager : MonoBehaviour
             // can bitince end game
             if (playerData.health <= 0)
             {
-                isPlayerDead = true; // Oyuncu öldü
-                animator.SetTrigger("Death");
-                deathEffect.SetActive(true); // Ölüm efektini aktif et
+                this.Death();
             }
         }
     }

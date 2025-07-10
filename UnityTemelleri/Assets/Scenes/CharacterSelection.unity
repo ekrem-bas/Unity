@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: e608da0f19bf64ae9be500fd262ccda8, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -1191,7 +1191,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 271.4461, y: 0}
+  m_AnchoredPosition: {x: 271.44617, y: 0}
   m_SizeDelta: {x: 542.89233, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1686823140
@@ -1248,6 +1248,8 @@ MonoBehaviour:
   - {fileID: 7283644533227984201, guid: eb23094fa889b45fcaba095b9a6b1ff3, type: 3}
   - {fileID: 9075187007969656530, guid: d9ba52aaf0f99449db0b36ead288632e, type: 3}
   - {fileID: 6530250335670728751, guid: 41ea072b148524677a4165afe870b08b, type: 3}
+  currentIndex: -1
+  currentCharacter: {fileID: 0}
   characterSpawnPoint: {fileID: 96565892}
   currentRigidbody: {fileID: 0}
   currentNavMeshAgent: {fileID: 0}
