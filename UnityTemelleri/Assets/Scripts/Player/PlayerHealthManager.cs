@@ -10,7 +10,7 @@ public class PlayerHealthManager : MonoBehaviour
     public Healthbar healthbar; // Sağlık çubuğu scripti
     public Animator animator;
     public static bool isPlayerDead = false; // Oyuncunun ölme durumu
-
+    public GameObject deathEffect; // Ölüm efekti prefab'ı
     void Start()
     {
         isPlayerDead = false; // Oyuncu başlangıçta ölmemiş
@@ -39,6 +39,7 @@ public class PlayerHealthManager : MonoBehaviour
             {
                 isPlayerDead = true; // Oyuncu öldü 
                 animator.SetTrigger("Death");
+                deathEffect.SetActive(true); // Ölüm efektini aktif et
             }
             // Mermiyi yok et
             Destroy(other.gameObject);
@@ -56,6 +57,7 @@ public class PlayerHealthManager : MonoBehaviour
             {
                 isPlayerDead = true; // Oyuncu öldü
                 animator.SetTrigger("Death");
+                deathEffect.SetActive(true); // Ölüm efektini aktif et
             }
         }
     }

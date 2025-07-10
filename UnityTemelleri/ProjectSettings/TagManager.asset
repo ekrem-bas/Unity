@@ -11,6 +11,7 @@ TagManager:
   - Magic
   - Sword
   - GameOverCanvas
+  - DeathEffect
   layers:
   - Default
   - TransparentFX

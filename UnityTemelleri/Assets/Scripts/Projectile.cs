@@ -5,6 +5,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public float damage; // Mermi hasarı
+    public GameObject bloodEffectPrefab;
 
     public static void Shoot(GameObject target, Transform bulletSpawnPoint, GameObject bulletPrefab, float damage = 50f, float speed = 20f, float lifetime = 7f)
     {
@@ -30,5 +31,23 @@ public class Projectile : MonoBehaviour
 
         // Mermiyi belirli bir süre sonra yok et
         Object.Destroy(bullet, lifetime);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Player"))
+        {
+            Vector3 hitPoint = other.ClosestPoint(transform.position);
+
+            // Merminin geliş yönünü bul
+            Vector3 forward = transform.forward;
+            Quaternion rotation = Quaternion.LookRotation(-forward);
+
+            if (bloodEffectPrefab != null)
+            {
+                Instantiate(bloodEffectPrefab, hitPoint, rotation);
+            }
+            Destroy(gameObject);
+        }
     }
 }
