@@ -10,6 +10,11 @@ public class TowerPopupManager : MonoBehaviour
 
     public void Show(Vector3 position)
     {
+        if (PlayerHealthManager.isPlayerDead)
+        {
+            return; // Oyuncu ölmüşse popup'ı gösterme
+        }
+
         popupPanel.SetActive(true); // Popup panelini aktif et
         spawnPosition = position; // Popup'ın açılacağı pozisyonu ayarla
 
