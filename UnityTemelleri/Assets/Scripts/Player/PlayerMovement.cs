@@ -33,6 +33,10 @@ namespace Scripts.Player
         // Update is called once per frame
         void Update()
         {
+            if (SkillManager.instance.skillClicked)
+            {
+                return;
+            }
             if (PlayerHealthManager.isPlayerDead) // Eğer oyuncu ölmüşse
             {
                 agent.isStopped = true; // NavMeshAgent'i durdur
