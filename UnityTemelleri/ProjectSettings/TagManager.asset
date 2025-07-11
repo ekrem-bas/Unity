@@ -12,6 +12,7 @@ TagManager:
   - Sword
   - GameOverCanvas
   - DeathEffect
+  - SkillPanel
   layers:
   - Default
   - TransparentFX

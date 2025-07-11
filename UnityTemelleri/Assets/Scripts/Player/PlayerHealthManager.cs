@@ -11,6 +11,7 @@ public class PlayerHealthManager : MonoBehaviour
     public Animator animator;
     public static bool isPlayerDead = false; // Oyuncunun ölme durumu
     public GameObject deathEffect; // Ölüm efekti prefab'ı
+    public GameObject bloodEffectPrefab;
     void Start()
     {
         isPlayerDead = false; // Oyuncu başlangıçta ölmemiş
@@ -58,6 +59,8 @@ public class PlayerHealthManager : MonoBehaviour
             playerData.health -= damage;
             // canı güncelle
             healthbar.UpdateHealthbar(playerData.maxHealth, playerData.health); // Sağlık çubuğunu güncelle
+            // kan efekti
+            Instantiate(bloodEffectPrefab, transform.position + (Vector3.up * 1.2f), Quaternion.identity);
             // can bitince end game
             if (playerData.health <= 0)
             {

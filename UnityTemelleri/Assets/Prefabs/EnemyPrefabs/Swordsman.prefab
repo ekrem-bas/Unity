@@ -476,7 +476,9 @@ MonoBehaviour:
   agent: {fileID: 362274147898287416}
   healthbar: {fileID: 1142097402948066568}
   health: 100
+  animator: {fileID: 0}
   attackRange: 2
+  bloodEffectPrefab: {fileID: 4430145906843720864, guid: 0829adb27462b4a5d9c1a245f1b3f78c, type: 3}
   magicSpanwPoint: {fileID: 0}
   magicPrefab: {fileID: 0}
   magicSpeed: 20

@@ -401,6 +401,7 @@ MonoBehaviour:
   healthbar: {fileID: 0}
   animator: {fileID: 0}
   deathEffect: {fileID: 4347163314036314706}
+  bloodEffectPrefab: {fileID: 4430145906843720864, guid: 0829adb27462b4a5d9c1a245f1b3f78c, type: 3}
 --- !u!4 &7953186175310974963 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 28425807d47a149cdadf6451d0773ebf, type: 3}

@@ -9,6 +9,8 @@ public class SkillManager : MonoBehaviour
     public CursorManager cursorManager;
     // herhangi bir skill tıklandı mı kontrolü
     public bool skillClicked = false;
+    // bu frame'de input consume edildi mi kontrolü
+    public bool inputConsumedThisFrame = false;
     // seçilen skill'in indexi
     public int selectedSkill = -1;
     // skillManager singleton örneği
@@ -20,6 +22,11 @@ public class SkillManager : MonoBehaviour
         {
             instance = this;
         }
+    }
+    void LateUpdate()
+    {
+        // Her frame sonunda input consume flag'ini sıfırla
+        inputConsumedThisFrame = false;
     }
 
     public void SelectSkill(int skillIndex)
@@ -48,6 +55,8 @@ public class SkillManager : MonoBehaviour
         selectedSkill = -1;
         cursorManager.ResetCursor();
         cursorManager.HideAreaIndicator();
+        // Input'u consume et
+        inputConsumedThisFrame = true;
     }
 
     // Skill'ler için butonlara tıklandığında çağrılacak fonksiyonlar

@@ -472,3 +472,4 @@ MonoBehaviour:
   healthbar: {fileID: 0}
   animator: {fileID: 0}
   deathEffect: {fileID: 1417456130397393057}
+  bloodEffectPrefab: {fileID: 4430145906843720864, guid: 0829adb27462b4a5d9c1a245f1b3f78c, type: 3}
