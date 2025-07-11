@@ -24,6 +24,7 @@ public class CursorManager : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 100f, LayerMask.GetMask("Ground")))
             {
+                areaIndicatorInstance.SetActive(true);
                 areaIndicatorInstance.transform.position = hit.point + Vector3.up * 0.01f;
                 if (Input.GetMouseButtonDown(0))
                 {
@@ -31,6 +32,10 @@ public class CursorManager : MonoBehaviour
                     HideAreaIndicator(); // Alan seçildiğinde göstergeleri gizle
                     ResetCursor();
                 }
+            }
+            else
+            {
+                areaIndicatorInstance.SetActive(false);
             }
         }
 
@@ -77,7 +82,6 @@ public class CursorManager : MonoBehaviour
     {
         if (skillIndex == 0)
         {
-            Cursor.visible = false; // Alan göstergesi için cursor'u gizle
             ShowAreaIndicator();
         }
         else if (skillIndex == 1)

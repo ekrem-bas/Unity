@@ -78,17 +78,6 @@ public class SkillManager : MonoBehaviour
         inputConsumedThisFrame = true;
     }
 
-    // Skill'ler için butonlara tıklandığında çağrılacak fonksiyonlar
-    public void MeteorSkill()
-    {
-        SelectSkill(0);
-    }
-
-    public void BeamSkill()
-    {
-        SelectSkill(1);
-    }
-
     // Meteor düşünce ne olacağının fonksiyonu
     public void OnMeteorAreaSelected(Vector3 position)
     {

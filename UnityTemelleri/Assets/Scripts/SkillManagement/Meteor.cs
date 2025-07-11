@@ -22,7 +22,7 @@ public class Meteor : MonoBehaviour
         if (other.CompareTag("Ground"))
         {
             // Alan içindeki tüm düşmanları bul ve hasar ver
-            float radius = 3f;
+            float radius = gameObject.GetComponent<SphereCollider>().radius;
             Collider[] hitColliders = Physics.OverlapSphere(transform.position, radius);
             foreach (var hit in hitColliders)
             {
