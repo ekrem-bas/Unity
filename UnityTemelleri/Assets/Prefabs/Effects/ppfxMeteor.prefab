@@ -14488,6 +14488,9 @@ GameObject:
   - component: {fileID: 11400000}
   - component: {fileID: 11400002}
   - component: {fileID: 11400004}
+  - component: {fileID: 3790137898518709661}
+  - component: {fileID: 6522540759255081768}
+  - component: {fileID: 7805542227240411630}
   m_Layer: 0
   m_Name: ppfxMeteor
   m_TagString: Untagged
@@ -18258,7 +18261,8 @@ ParticleSystem:
     exit: 0
     colliderQueryMode: 0
     radiusScale: 1
-    primitives: []
+    primitives:
+    - {fileID: 0}
   SubModule:
     serializedVersion: 2
     enabled: 0
@@ -19285,7 +19289,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100006}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cefc213a4c43bec44b48511e5b35e513, type: 3}
   m_Name: 
@@ -19298,7 +19302,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100006}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b9e474e7590fa47499cf52a5c1a8cb22, type: 3}
   m_Name: 
@@ -19306,7 +19310,7 @@ MonoBehaviour:
   spawnPosOffset: {x: 10, y: 50, z: 30}
   speed: 80
   detonationPrefab: {fileID: 100010, guid: 58cdf464e218e2f4e8044e57682af001, type: 3}
-  destroyOnHit: 0
+  destroyOnHit: 1
   setRateToNull: 1
 --- !u!114 &11400004
 MonoBehaviour:
@@ -19315,8 +19319,73 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100006}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c1ac040a55b6cc34880343bcd6ef43c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3790137898518709661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8e38b2bd13ee409ab2f7b39bdab8511, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerData: {fileID: 11400000, guid: c4d55102c5e3047c2b54c5022114f445, type: 2}
+  meteorDamage: 0
+  fallSpeed: 50
+  impactEffect: {fileID: 7283958932065111327, guid: 1193f5115dcf743b1bb145948df19b33, type: 3}
+  impactEffectInstance: {fileID: 0}
+--- !u!135 &6522540759255081768
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100006}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 3
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &7805542227240411630
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100006}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1

@@ -22,6 +22,7 @@ public class GameOverScene : MonoBehaviour
         int totalCoins = CoinManager.coinManagerInstance.coinCount;
         coinText.text = totalCoins.ToString();
         gameOverCanvas.gameObject.SetActive(true);
+        SkillManager.instance.ResetSkill(); // Skill'i resetle
     }
 
     public void MainMenu()

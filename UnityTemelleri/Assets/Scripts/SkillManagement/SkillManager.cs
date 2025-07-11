@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Scripts.Enemy;
 using UnityEngine;
 
 public class SkillManager : MonoBehaviour
@@ -15,7 +16,11 @@ public class SkillManager : MonoBehaviour
     public int selectedSkill = -1;
     // skillManager singleton örneği
     public static SkillManager instance;
-
+    public PlayerData playerData;
+    public GameObject meteorPrefab;
+    Meteor meteorScript;
+    public GameObject beamPrefab;
+    Beam beamScript;
     void Awake()
     {
         if (instance == null)
@@ -23,8 +28,22 @@ public class SkillManager : MonoBehaviour
             instance = this;
         }
     }
+    void Start()
+    {
+        meteorScript = meteorPrefab.GetComponent<Meteor>();
+        beamScript = beamPrefab.GetComponent<Beam>();
+    }
     void LateUpdate()
     {
+        if (PlayerHealthManager.isPlayerDead)
+        {
+            // Eğer oyuncu ölmüşse skill seçimini engelle
+            skillClicked = false;
+            selectedSkill = -1;
+            cursorManager.ResetCursor();
+            cursorManager.HideAreaIndicator();
+            return; // Hiçbir şey yapma
+        }
         // Her frame sonunda input consume flag'ini sıfırla
         inputConsumedThisFrame = false;
     }
@@ -74,9 +93,7 @@ public class SkillManager : MonoBehaviour
     public void OnMeteorAreaSelected(Vector3 position)
     {
         Debug.Log("Meteor düşecek pozisyon: " + position);
-        // Meteor instantiate edilmeli
-        // Meteor düşünce efekt olmalı
-        // düştüğü alandaki düşmanlara hasar vermeli
+        Instantiate(meteorPrefab, position + (Vector3.up * meteorScript.meteorFallStartHeight), Quaternion.identity);
         ResetSkill();
     }
 
@@ -84,8 +101,8 @@ public class SkillManager : MonoBehaviour
     public void OnBeamTargetSelected(GameObject enemy)
     {
         Debug.Log("Beam hedefi: " + enemy.name);
-        // Beam skill efekti uygulanmalı
-        // seçilen düşmana hasar verilmeli
+        // Beam prefab'ını instantiate et
+        Instantiate(beamPrefab, enemy.transform.position + Vector3.up * beamScript.beamStartHeight, Quaternion.identity);
         ResetSkill();
     }
 }

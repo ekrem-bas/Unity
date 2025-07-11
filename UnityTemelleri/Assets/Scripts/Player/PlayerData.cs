@@ -10,4 +10,6 @@ public class PlayerData : ScriptableObject
     public float maxHealth; // Oyuncunun maksimum canı
     public float health; // Oyuncunun şu anki canı
     public float speed; // Oyuncunun hızı
+    public float beamSkillDamage;
+    public float meteorSkillDamage;
 }

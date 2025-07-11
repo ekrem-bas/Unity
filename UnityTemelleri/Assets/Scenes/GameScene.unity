@@ -3011,6 +3011,9 @@ MonoBehaviour:
   skillClicked: 0
   inputConsumedThisFrame: 0
   selectedSkill: -1
+  playerData: {fileID: 11400000, guid: c4d55102c5e3047c2b54c5022114f445, type: 2}
+  meteorPrefab: {fileID: 100006, guid: ea7f0a965d6dbfa4fb82fbf7494fb222, type: 3}
+  beamPrefab: {fileID: 3625779986941562197, guid: e16dc5c3a48de4f96b9defdaee1fe25d, type: 3}
 --- !u!1 &1483260008
 GameObject:
   m_ObjectHideFlags: 0
